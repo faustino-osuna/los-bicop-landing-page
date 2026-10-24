@@ -31,6 +31,12 @@
       "sourceType": "autoskills-registry",
       "computedHash": "7495da57766c99f787a729d4a21234ecb5d29d90f304a0d9a5996dcdc1eec048"
     },
+    "starwind-ui": {
+      "source": "starwind-ui/skills",
+      "sourceType": "github",
+      "skillPath": "skills/starwind-ui/SKILL.md",
+      "computedHash": "49735bbff14defb8cb883e48027b5764417759cf16e0605563608dafd06357e9"
+    },
     "tailwind-css-patterns": {
       "source": "giuseppe-trisciuoglio/developer-kit",
       "sourceType": "autoskills-registry",
