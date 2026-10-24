@@ -4,6 +4,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+    --color-bicop-night: #080910;
+    --color-bicop-stage: #15172b;
+    --color-bicop-electric: #3436ff;
+    --color-bicop-violet: #8178ff;
+    --color-bicop-ice: #f4f5ff;
+    --color-bicop-chrome: #aeb3cc;
+    --color-bicop-magenta: #e53278;
+
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
 
@@ -74,22 +82,22 @@
 }
 
 :root {
-  --background: var(--color-white);
-  --foreground: var(--color-neutral-950);
-  --card: var(--color-white);
-  --card-foreground: var(--color-neutral-950);
-  --popover: var(--color-white);
-  --popover-foreground: var(--color-neutral-950);
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-neutral-50);
-  --primary-accent: var(--color-blue-700);
-  --secondary: var(--color-neutral-200);
-  --secondary-foreground: var(--color-neutral-950);
-  --secondary-accent: var(--color-neutral-950);
-  --muted: var(--color-neutral-100);
-  --muted-foreground: var(--color-neutral-600);
-  --accent: var(--color-neutral-100);
-  --accent-foreground: var(--color-neutral-900);
+  --background: var(--color-bicop-night);
+  --foreground: var(--color-bicop-ice);
+  --card: var(--color-bicop-stage);
+  --card-foreground: var(--color-bicop-ice);
+  --popover: var(--color-bicop-stage);
+  --popover-foreground: var(--color-bicop-ice);
+  --primary: var(--color-bicop-electric);
+  --primary-foreground: var(--color-bicop-ice);
+  --primary-accent: var(--color-bicop-violet);
+  --secondary: var(--color-bicop-stage);
+  --secondary-foreground: var(--color-bicop-ice);
+  --secondary-accent: var(--color-bicop-violet);
+  --muted: var(--color-bicop-stage);
+  --muted-foreground: var(--color-bicop-chrome);
+  --accent: var(--color-bicop-stage);
+  --accent-foreground: var(--color-bicop-ice);
   --info: var(--color-sky-300);
   --info-foreground: var(--color-sky-950);
   --success: var(--color-green-300);
@@ -98,39 +106,39 @@
   --warning-foreground: var(--color-amber-950);
   --error: var(--color-red-700);
   --error-foreground: var(--color-neutral-50);
-  --border: var(--color-neutral-200);
-  --input: var(--color-neutral-200);
-  --outline: var(--color-neutral-400);
+  --border: color-mix(in srgb, var(--color-bicop-chrome) 24%, transparent);
+  --input: color-mix(in srgb, var(--color-bicop-chrome) 30%, transparent);
+  --outline: var(--color-bicop-violet);
   --radius: 0.625rem;
 
   /* sidebar variables */
-  --sidebar-background: var(--color-neutral-50);
-  --sidebar-foreground: var(--color-neutral-950);
-  --sidebar-primary: var(--color-blue-700);
-  --sidebar-primary-foreground: var(--color-neutral-50);
-  --sidebar-accent: var(--color-neutral-100);
-  --sidebar-accent-foreground: var(--color-neutral-900);
-  --sidebar-border: var(--color-neutral-200);
-  --sidebar-outline: var(--color-neutral-400);
+  --sidebar-background: var(--color-bicop-night);
+  --sidebar-foreground: var(--color-bicop-ice);
+  --sidebar-primary: var(--color-bicop-electric);
+  --sidebar-primary-foreground: var(--color-bicop-ice);
+  --sidebar-accent: var(--color-bicop-stage);
+  --sidebar-accent-foreground: var(--color-bicop-ice);
+  --sidebar-border: var(--border);
+  --sidebar-outline: var(--color-bicop-violet);
 }
 
 .dark {
-  --background: var(--color-neutral-950);
-  --foreground: var(--color-neutral-50);
-  --card: var(--color-neutral-900);
-  --card-foreground: var(--color-neutral-50);
-  --popover: var(--color-neutral-900);
-  --popover-foreground: var(--color-neutral-50);
-  --primary: var(--color-blue-700);
-  --primary-foreground: var(--color-neutral-50);
-  --primary-accent: var(--color-blue-400);
-  --secondary: var(--color-neutral-800);
-  --secondary-foreground: var(--color-neutral-50);
-  --secondary-accent: var(--color-neutral-50);
-  --muted: var(--color-neutral-800);
-  --muted-foreground: var(--color-neutral-400);
-  --accent: var(--color-neutral-700);
-  --accent-foreground: var(--color-neutral-50);
+  --background: var(--color-bicop-night);
+  --foreground: var(--color-bicop-ice);
+  --card: var(--color-bicop-stage);
+  --card-foreground: var(--color-bicop-ice);
+  --popover: var(--color-bicop-stage);
+  --popover-foreground: var(--color-bicop-ice);
+  --primary: var(--color-bicop-electric);
+  --primary-foreground: var(--color-bicop-ice);
+  --primary-accent: var(--color-bicop-violet);
+  --secondary: var(--color-bicop-stage);
+  --secondary-foreground: var(--color-bicop-ice);
+  --secondary-accent: var(--color-bicop-violet);
+  --muted: var(--color-bicop-stage);
+  --muted-foreground: var(--color-bicop-chrome);
+  --accent: var(--color-bicop-stage);
+  --accent-foreground: var(--color-bicop-ice);
   --info: var(--color-sky-300);
   --info-foreground: var(--color-sky-950);
   --success: var(--color-green-300);
@@ -141,17 +149,17 @@
   --error-foreground: var(--color-neutral-50);
   --border: --alpha(var(--color-neutral-50) / 10%);
   --input: --alpha(var(--color-neutral-50) / 15%);
-  --outline: var(--color-neutral-500);
+  --outline: var(--color-bicop-violet);
 
   /* sidebars variables */
-  --sidebar-background: var(--color-neutral-900);
-  --sidebar-foreground: var(--color-neutral-50);
-  --sidebar-primary: var(--color-blue-700);
-  --sidebar-primary-foreground: var(--color-neutral-50);
-  --sidebar-accent: var(--color-neutral-800);
-  --sidebar-accent-foreground: var(--color-neutral-100);
-  --sidebar-border: var(--color-neutral-800);
-  --sidebar-outline: var(--color-neutral-600);
+  --sidebar-background: var(--color-bicop-night);
+  --sidebar-foreground: var(--color-bicop-ice);
+  --sidebar-primary: var(--color-bicop-electric);
+  --sidebar-primary-foreground: var(--color-bicop-ice);
+  --sidebar-accent: var(--color-bicop-stage);
+  --sidebar-accent-foreground: var(--color-bicop-ice);
+  --sidebar-border: var(--border);
+  --sidebar-outline: var(--color-bicop-violet);
 }
 
 @layer base {
