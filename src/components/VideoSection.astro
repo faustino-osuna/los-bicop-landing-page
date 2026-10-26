@@ -1,0 +1,177 @@
+---
+import VideoPlayer from './VideoPlayer.astro';
+
+const videoId = 'uJ1IIQVMe9Y';
+const videoTitle = 'Got A Crush - Los Bicop (Official video)';
+const youtubeUrl = 'https://youtu.be/uJ1IIQVMe9Y?si=AwwTtfrK97GZHnQ5';
+---
+
+<section class="video-section" id="videoclip" aria-labelledby="video-title">
+	<div class="video-heading" data-video-reveal="heading">
+		<p class="video-kicker"><span aria-hidden="true"></span>Dale play al movimiento</p>
+		<h2 id="video-title">Nuestro último videoclip<span>.</span></h2>
+	</div>
+
+	<div class="video-frame" data-video-reveal="frame">
+		<VideoPlayer videoId={videoId} title={videoTitle} />
+	</div>
+
+	<a class="video-link" data-video-reveal="link" href={youtubeUrl} target="_blank" rel="noreferrer">
+		Ver en YouTube <span aria-hidden="true">↗</span>
+	</a>
+</section>
+
+<script>
+	const videoSections = document.querySelectorAll<HTMLElement>('.video-section');
+	const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+	if ('IntersectionObserver' in window && !reducedMotion.matches) {
+		videoSections.forEach((section) => {
+			section.dataset.videoRevealReady = 'true';
+
+			const observer = new IntersectionObserver(
+				(entries, currentObserver) => {
+					if (entries.some((entry) => entry.isIntersecting)) {
+						section.dataset.videoReveal = 'visible';
+						currentObserver.unobserve(section);
+					}
+				},
+				{ threshold: 0.18, rootMargin: '0px 0px -6% 0px' },
+			);
+
+			observer.observe(section);
+		});
+	}
+</script>
+
+<style>
+	.video-section {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: clamp(68px, 8vw, 96px) 6% clamp(76px, 8vw, 102px);
+		background:
+			radial-gradient(
+				ellipse at 50% 72%,
+				color-mix(in srgb, var(--color-bicop-electric) 13%, transparent),
+				transparent 48%
+			),
+			var(--color-bicop-night);
+		text-align: center;
+	}
+
+	.video-heading {
+		margin-bottom: 30px;
+	}
+
+	.video-kicker {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		margin: 0;
+		color: var(--color-bicop-chrome);
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+	}
+
+	.video-kicker span {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background: var(--color-bicop-violet);
+		box-shadow: 0 0 14px var(--color-bicop-violet);
+	}
+
+	.video-heading h2 {
+		margin: 17px 0 0;
+		color: var(--color-bicop-ice);
+		font-size: clamp(34px, 5vw, 64px);
+		font-weight: 900;
+		letter-spacing: -0.075em;
+		line-height: 0.95;
+		text-wrap: balance;
+	}
+
+	.video-heading h2 span {
+		color: var(--color-bicop-violet);
+	}
+
+	.video-frame {
+		position: relative;
+		width: min(100%, 900px);
+		overflow: hidden;
+		aspect-ratio: 16 / 9;
+		border: 1px solid color-mix(in srgb, var(--color-bicop-violet) 42%, transparent);
+		background: var(--color-bicop-stage);
+		box-shadow: 0 0 65px color-mix(in srgb, var(--color-bicop-electric) 15%, transparent);
+	}
+
+	.video-section[data-video-reveal-ready] [data-video-reveal] {
+		opacity: 0;
+		transform: translateY(22px) scale(0.99);
+		transition:
+			opacity 700ms ease,
+			transform 700ms cubic-bezier(0.2, 0.75, 0.25, 1);
+	}
+
+	.video-section[data-video-reveal-ready] [data-video-reveal="frame"] {
+		transition-delay: 120ms;
+	}
+
+	.video-section[data-video-reveal-ready] [data-video-reveal="link"] {
+		transition-delay: 220ms;
+	}
+
+	.video-section[data-video-reveal="visible"] [data-video-reveal] {
+		opacity: 1;
+		transform: none;
+	}
+
+	.video-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 12px;
+		margin-top: 21px;
+		color: var(--color-bicop-chrome);
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-decoration: none;
+		text-transform: uppercase;
+		transition: color 180ms ease;
+	}
+
+	.video-link span {
+		color: var(--color-bicop-violet);
+		font-size: 16px;
+	}
+
+	.video-link:hover {
+		color: var(--color-bicop-ice);
+	}
+
+	.video-link:focus-visible {
+		outline: 2px solid var(--color-bicop-violet);
+		outline-offset: 4px;
+	}
+
+	@media (max-width: 640px) {
+		.video-section {
+			padding-inline: 5%;
+		}
+
+		.video-kicker {
+			font-size: 9px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.video-link,
+		.video-section [data-video-reveal] {
+			transition: none;
+		}
+	}
+</style>

@@ -1,0 +1,341 @@
+---
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from './starwind/dialog';
+
+interface Props {
+	videoId: string;
+	title: string;
+	posterUrl?: string;
+	description?: string;
+}
+
+const {
+	videoId,
+	title,
+	posterUrl = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
+	description =
+		'Pulsa Escape cuando el foco no esté dentro del video. Si estás interactuando con YouTube, usa el botón Cerrar.',
+} = Astro.props;
+---
+
+<div class="video-player" data-video-player-root>
+	<Dialog>
+		<DialogTrigger class="video-player__trigger" aria-label={`Reproducir ${title}`}>
+			<img
+				class="video-player__poster"
+				src={posterUrl}
+				alt=""
+				width="1280"
+				height="720"
+				loading="lazy"
+				decoding="async"
+			/>
+			<span class="video-player__play" aria-hidden="true">▶</span>
+		</DialogTrigger>
+
+		<DialogContent class="video-dialog-content" closeLabel="Cerrar reproductor">
+			<DialogHeader class="sr-only">
+				<DialogTitle class="sr-only">{title}</DialogTitle>
+				<DialogDescription class="sr-only">{description}</DialogDescription>
+			</DialogHeader>
+			<div class="video-player__media" data-video-media data-video-id={videoId} data-video-title={title}></div>
+		</DialogContent>
+	</Dialog>
+</div>
+
+<script>
+	document.querySelectorAll<HTMLElement>('[data-video-player-root]').forEach((root) => {
+		const dialog = root.querySelector<HTMLElement>('[data-slot="dialog-content"]');
+		const media = root.querySelector<HTMLElement>('[data-video-media]');
+		const trigger = root.querySelector<HTMLElement>('[data-slot="dialog-trigger"]');
+
+		if (!dialog || !media || !trigger) {
+			return;
+		}
+
+		let scrollbarWidth = 0;
+		let scrollCompensationApplied = false;
+		let originalBodyStyles = new Map<string, { value: string; priority: string }>();
+		let bodyStyleObserver: MutationObserver | undefined;
+		let bodyPaddingBeforeOpen = '0px';
+		let scrollYBeforeOpen = 0;
+		const lockedBodyProperties = ['padding-right', 'position', 'top', 'left', 'right', 'width'];
+
+		const syncPlayer = () => {
+			const isOpen = dialog.dataset.state === 'open';
+			const iframe = media.querySelector('iframe');
+
+			if (isOpen && !scrollCompensationApplied) {
+				const body = document.body;
+				bodyStyleObserver?.disconnect();
+				body.style.setProperty('position', 'fixed');
+				body.style.setProperty('top', `-${scrollYBeforeOpen}px`);
+				body.style.setProperty('left', '0');
+				body.style.setProperty('right', '0');
+				body.style.setProperty('width', 'auto');
+				if (scrollbarWidth > 0) {
+					body.style.setProperty(
+						'padding-right',
+						`calc(${bodyPaddingBeforeOpen} + ${scrollbarWidth}px)`,
+					);
+				}
+				scrollCompensationApplied = true;
+				bodyStyleObserver = new MutationObserver(() => {
+					if (
+						dialog.dataset.state === 'closed' &&
+						getComputedStyle(body).overflow !== 'hidden'
+					) {
+						for (const property of lockedBodyProperties) {
+							const original = originalBodyStyles.get(property);
+							if (original?.value) {
+								body.style.setProperty(property, original.value, original.priority);
+							} else {
+								body.style.removeProperty(property);
+							}
+						}
+						window.scrollTo({ top: scrollYBeforeOpen, behavior: 'instant' });
+						originalBodyStyles.clear();
+						scrollCompensationApplied = false;
+						bodyStyleObserver?.disconnect();
+						bodyStyleObserver = undefined;
+					}
+				});
+				bodyStyleObserver.observe(body, { attributes: true, attributeFilter: ['style'] });
+			}
+
+			if (isOpen && !iframe) {
+				const player = document.createElement('iframe');
+				player.src = `https://www.youtube-nocookie.com/embed/${media.dataset.videoId}?autoplay=1`;
+				player.title = media.dataset.videoTitle ?? '';
+				player.allow =
+					'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+				player.referrerPolicy = 'strict-origin-when-cross-origin';
+				player.allowFullscreen = true;
+				media.append(player);
+			} else if (!isOpen && iframe) {
+				iframe.remove();
+			}
+
+			if (!isOpen) {
+				window.setTimeout(() => {
+					if (dialog.dataset.state === 'closed') {
+						trigger.focus({ preventScroll: true });
+					}
+				}, 320);
+			}
+		};
+
+		const observer = new MutationObserver(syncPlayer);
+		observer.observe(dialog, { attributes: true, attributeFilter: ['data-state'] });
+		trigger.addEventListener(
+			'click',
+			() => {
+				if (!scrollCompensationApplied) {
+					const body = document.body;
+					scrollYBeforeOpen = window.scrollY;
+					scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+					originalBodyStyles = new Map(
+						lockedBodyProperties.map((property) => [
+							property,
+							{
+								value: body.style.getPropertyValue(property),
+								priority: body.style.getPropertyPriority(property),
+							},
+						]),
+					);
+					bodyPaddingBeforeOpen = getComputedStyle(body).paddingRight;
+				}
+			},
+			true,
+		);
+		trigger.addEventListener('click', () => requestAnimationFrame(syncPlayer));
+	});
+</script>
+
+<style>
+	.video-player {
+		position: relative;
+		width: 100%;
+		height: 100%;
+	}
+
+	.video-player :global([data-slot="dialog"]) {
+		display: contents;
+	}
+
+	.video-player :global([data-slot="dialog-trigger"]) {
+		position: absolute;
+		inset: 0;
+		display: block;
+	}
+
+	.video-player__trigger {
+		position: absolute;
+		inset: 0;
+		display: grid;
+		width: 100%;
+		height: 100%;
+		place-items: center;
+		overflow: hidden;
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		background: var(--color-bicop-night);
+		color: var(--color-bicop-ice);
+		cursor: pointer;
+	}
+
+	.video-player__trigger::after {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(180deg, rgb(8 9 16 / 8%), rgb(8 9 16 / 34%));
+		content: "";
+	}
+
+	.video-player__poster {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 350ms ease;
+	}
+
+	.video-player__play {
+		position: relative;
+		z-index: 1;
+		display: grid;
+		width: 66px;
+		height: 66px;
+		place-items: center;
+		padding-left: 4px;
+		border: 1px solid rgb(255 255 255 / 75%);
+		border-radius: 50%;
+		background: rgb(8 9 16 / 55%);
+		color: var(--color-bicop-ice);
+		font-size: 19px;
+		backdrop-filter: blur(8px);
+		transition:
+			transform 180ms ease,
+			background-color 180ms ease;
+	}
+
+	.video-player__trigger:hover .video-player__poster {
+		transform: scale(1.025);
+	}
+
+	.video-player__trigger:hover .video-player__play {
+		transform: scale(1.08);
+		background: var(--color-bicop-electric);
+	}
+
+	.video-player__trigger:focus-visible {
+		z-index: 1;
+		outline: 3px solid var(--color-bicop-violet);
+		outline-offset: -5px;
+	}
+
+	:global(.video-dialog-content) {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		margin: 0;
+		width: min(92vw, 1280px, calc(86dvh * 16 / 9));
+		max-width: none;
+		aspect-ratio: 16 / 9;
+		translate: none;
+		transform: translate(-50%, -50%);
+		overflow: visible;
+		padding: 0;
+		border: 1px solid color-mix(in srgb, var(--color-bicop-violet) 60%, transparent);
+		border-radius: 0;
+		background: var(--color-bicop-night);
+		box-shadow:
+			0 24px 100px rgb(0 0 0 / 65%),
+			0 0 55px color-mix(in srgb, var(--color-bicop-electric) 22%, transparent);
+	}
+
+	:global(.video-dialog-content[data-state="open"]) {
+		animation: video-dialog-enter 220ms ease-out both;
+	}
+
+	:global(.video-dialog-content[data-state="closed"]) {
+		animation: video-dialog-exit 160ms ease-in both;
+	}
+
+	:global(.video-dialog-content [data-slot="dialog-close"]) {
+		top: -58px;
+		right: 0;
+		display: grid;
+		width: 44px;
+		height: 44px;
+		place-items: center;
+		border: 1px solid rgb(255 255 255 / 30%);
+		border-radius: 50%;
+		background: var(--color-bicop-stage);
+		color: var(--color-bicop-ice);
+	}
+
+	.video-player__media {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.video-player__media :global(iframe) {
+		position: absolute;
+		inset: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+
+	@keyframes video-dialog-enter {
+		from {
+			opacity: 0;
+			transform: translate(-50%, -48%) scale(0.97);
+		}
+
+		to {
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+		}
+	}
+
+	@keyframes video-dialog-exit {
+		to {
+			opacity: 0;
+			transform: translate(-50%, -48%) scale(0.97);
+		}
+	}
+
+	@media (max-width: 640px) {
+		.video-player__play {
+			width: 54px;
+			height: 54px;
+			font-size: 16px;
+		}
+
+		:global(.video-dialog-content) {
+			width: min(92vw, calc(86dvh * 16 / 9));
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.video-player__poster,
+		.video-player__play,
+		:global(.video-dialog-content[data-state]) {
+			transition: none;
+			animation: none;
+		}
+	}
+</style>
