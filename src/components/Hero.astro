@@ -205,13 +205,18 @@
 		}
 
 		.hero-photo {
-			top: 27%;
+			--photo-mask:
+				linear-gradient(to right, transparent 0%, #000 19%, #000 81%, transparent 100%),
+				linear-gradient(to bottom, transparent 0%, #000 8%, #000 82%, transparent 100%);
+
+			top: clamp(5.5rem, 13svh, 7rem);
 			width: min(92vw, 540px);
-			height: 60%;
+			height: 68%;
 			min-height: 0;
 		}
 
 		.hero-wordmark {
+			bottom: 14%;
 			font-size: clamp(91px, 22vw, 145px);
 		}
 
