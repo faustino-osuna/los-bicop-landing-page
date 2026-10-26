@@ -8,6 +8,8 @@ import {
 	DialogTrigger,
 } from './starwind/dialog';
 
+import PlayIcon from './Icons/PlayIcon.astro';
+
 interface Props {
 	videoId: string;
 	title: string;
@@ -36,7 +38,9 @@ const {
 				loading="lazy"
 				decoding="async"
 			/>
-			<span class="video-player__play" aria-hidden="true">▶</span>
+			<span class="video-player__play" aria-hidden="true">
+				<PlayIcon/>
+			</span>
 		</DialogTrigger>
 
 		<DialogContent class="video-dialog-content" closeLabel="Cerrar reproductor">

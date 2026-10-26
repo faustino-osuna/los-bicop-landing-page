@@ -1,9 +1,11 @@
 ---
 import VideoPlayer from './VideoPlayer.astro';
+import YoutubeIcon from './Icons/YoutubeIcon.astro';
 
 const videoId = 'uJ1IIQVMe9Y';
 const videoTitle = 'Got A Crush - Los Bicop (Official video)';
 const youtubeUrl = 'https://youtu.be/uJ1IIQVMe9Y?si=AwwTtfrK97GZHnQ5';
+
 ---
 
 <section class="video-section" id="videoclip" aria-labelledby="video-title">
@@ -17,7 +19,7 @@ const youtubeUrl = 'https://youtu.be/uJ1IIQVMe9Y?si=AwwTtfrK97GZHnQ5';
 	</div>
 
 	<a class="video-link" data-video-reveal="link" href={youtubeUrl} target="_blank" rel="noreferrer">
-		Ver en YouTube <span aria-hidden="true">↗</span>
+		Ver en YouTube <span aria-hidden="true"><YoutubeIcon class="w-8 h-8"/></span>
 	</a>
 </section>
 
