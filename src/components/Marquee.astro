@@ -1,0 +1,110 @@
+---
+const repetitions = Array.from({ length: 4 });
+const danceStyles = ['Electrodance', 'Popping', 'Waacking', 'House', 'Hip hop', 'Litefeet', 'Krump'];
+const repeatedStyles = repetitions.flatMap(() => danceStyles);
+---
+
+<div class="marquee">
+	<p class="sr-only">Estilos de baile: {danceStyles.join(', ')}.</p>
+	<div class="marquee-static" aria-hidden="true">
+		{danceStyles.map((style, index) => (
+			<span class="marquee-item">
+				{style}{index < danceStyles.length - 1 && <i>✳︎</i>}
+			</span>
+		))}
+	</div>
+	<div class="marquee-track" aria-hidden="true">
+		{
+			Array.from({ length: 2 }, () => (
+				<div class="marquee-group">
+					{repeatedStyles.map((style) => (
+						<span class="marquee-item">
+							{style}<i>✳︎</i>
+						</span>
+					))}
+				</div>
+			))
+		}
+	</div>
+</div>
+
+<style>
+	.marquee {
+		overflow: hidden;
+		border-block: 1px solid color-mix(in srgb, var(--color-bicop-chrome) 22%, transparent);
+		background: color-mix(in srgb, var(--color-bicop-stage) 55%, var(--color-bicop-night));
+	}
+
+	.marquee-track,
+	.marquee-group {
+		display: flex;
+		width: max-content;
+	}
+
+	.marquee-track {
+		animation: marquee-scroll 48s linear infinite;
+	}
+
+	.marquee-static {
+		display: none;
+		flex-wrap: wrap;
+		justify-content: center;
+		color: var(--color-bicop-chrome);
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		line-height: 1.8;
+		text-transform: uppercase;
+	}
+
+	.marquee-group {
+		flex: 0 0 auto;
+	}
+
+	.marquee-item {
+		display: inline-flex;
+		align-items: center;
+		padding-block: 19px;
+		color: var(--color-bicop-chrome);
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.21em;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+
+	.marquee-item i {
+		padding-inline: 30px;
+		color: var(--color-bicop-violet);
+		font-family: Arial, sans-serif;
+		font-size: 13px;
+		font-style: normal;
+	}
+
+	.marquee-static i {
+		padding-inline: 8px;
+		color: var(--color-bicop-violet);
+		font-style: normal;
+	}
+
+	@keyframes marquee-scroll {
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.marquee-track {
+			display: none;
+		}
+
+		.marquee-static {
+			display: flex;
+			padding: 14px 16px;
+		}
+
+		.marquee-static .marquee-item {
+			padding-block: 0;
+		}
+	}
+</style>
