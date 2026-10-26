@@ -166,6 +166,31 @@
   * {
     @apply border-border outline-outline/50;
   }
+
+  * {
+    scrollbar-color: var(--color-bicop-violet) var(--color-bicop-night);
+    scrollbar-width: thin;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--color-bicop-night);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border: 2px solid var(--color-bicop-night);
+    border-radius: 999px;
+    background: var(--color-bicop-violet);
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--color-bicop-electric);
+  }
+
   body {
     @apply bg-background text-foreground scheme-light dark:scheme-dark;
   }

@@ -1,0 +1,261 @@
+---
+import { Button } from './starwind/button';
+import {
+	Sheet,
+	SheetClose,
+	SheetContent,
+	SheetDescription,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger,
+} from './starwind/sheet';
+
+const instagramUrl = 'https://www.instagram.com/losbicop/';
+---
+
+<header class="site-header">
+	<a class="brand" href="#inicio" aria-label="Los Bicop, inicio">
+		<img src={`${import.meta.env.BASE_URL}img/los-bicop-logo.jpg`} alt="" width="42" height="42" />
+		<span>LOS <strong>BICOP</strong></span>
+	</a>
+
+	<nav class="navigation" aria-label="Navegación principal">
+		<a href="#crew">La crew</a>
+		<a href="#podcast">Podcast</a>
+		<a href="#spotify">Spotify</a>
+		<a href="#nosotros">Nosotros</a>
+	</nav>
+
+	<a class="instagram-link" href={instagramUrl} target="_blank" rel="noreferrer">
+		Instagram <span aria-hidden="true">↗</span>
+	</a>
+
+	<Sheet class="mobile-menu">
+		<SheetTrigger asChild>
+			<Button
+				variant="outline"
+				size="icon"
+				class="mobile-menu-trigger"
+				aria-label="Abrir menú principal"
+			>
+				<span class="menu-icon" aria-hidden="true"><span></span></span>
+			</Button>
+		</SheetTrigger>
+		<SheetContent side="right" class="mobile-sheet">
+			<SheetHeader class="mobile-sheet-header">
+				<SheetTitle>Los Bicop</SheetTitle>
+				<SheetDescription>Navegación principal</SheetDescription>
+			</SheetHeader>
+			<nav class="mobile-navigation" aria-label="Navegación móvil">
+				<SheetClose asChild><a href="#crew">La crew</a></SheetClose>
+				<SheetClose asChild><a href="#podcast">Podcast</a></SheetClose>
+				<SheetClose asChild><a href="#spotify">Spotify</a></SheetClose>
+				<SheetClose asChild><a href="#nosotros">Nosotros</a></SheetClose>
+				<SheetClose asChild>
+					<a class="mobile-instagram" href={instagramUrl} target="_blank" rel="noreferrer">
+						Instagram <span aria-hidden="true">↗</span>
+					</a>
+				</SheetClose>
+			</nav>
+		</SheetContent>
+	</Sheet>
+</header>
+
+<style>
+	.site-header {
+		position: fixed;
+		z-index: 40;
+		top: 0;
+		left: 0;
+		display: grid;
+		width: calc(100% - var(--sw-scrollbar-width, 0px));
+		min-height: 88px;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+		padding-inline: 6.2%;
+		border-bottom: 1px solid rgb(255 255 255 / 12%);
+		background: color-mix(in srgb, var(--color-bicop-night) 58%, transparent);
+		backdrop-filter: blur(14px) saturate(130%);
+		-webkit-backdrop-filter: blur(14px) saturate(130%);
+	}
+
+	.brand,
+	.navigation,
+	.instagram-link {
+		display: flex;
+		align-items: center;
+	}
+
+	.brand {
+		width: fit-content;
+		gap: 11px;
+		color: var(--color-bicop-ice);
+		font-size: 13px;
+		font-weight: 800;
+		letter-spacing: 0.1em;
+		text-decoration: none;
+	}
+
+	.brand img {
+		width: 42px;
+		height: 42px;
+		border: 1px solid rgb(255 255 255 / 18%);
+		border-radius: 50%;
+		object-fit: cover;
+	}
+
+	.navigation {
+		gap: clamp(20px, 2.5vw, 36px);
+	}
+
+	.navigation a,
+	.instagram-link {
+		color: var(--color-bicop-chrome);
+		font-size: 12px;
+		text-decoration: none;
+		transition: color 180ms ease;
+	}
+
+	.navigation a:hover,
+	.instagram-link:hover {
+		color: var(--color-bicop-ice);
+	}
+
+	.instagram-link {
+		justify-self: end;
+		gap: 10px;
+		padding: 11px 15px;
+		border: 1px solid rgb(255 255 255 / 24%);
+		border-radius: 2px;
+		color: var(--color-bicop-ice);
+	}
+
+	.instagram-link span {
+		color: var(--color-bicop-violet);
+	}
+
+	.site-header :global(.mobile-menu) {
+		display: contents;
+	}
+
+	.site-header :global(.mobile-menu-trigger) {
+		display: none;
+	}
+
+	.brand:focus-visible,
+	.navigation a:focus-visible,
+	.instagram-link:focus-visible {
+		outline: 2px solid var(--color-bicop-violet);
+		outline-offset: 4px;
+	}
+
+	@media (max-width: 760px) {
+		.site-header {
+			min-height: 76px;
+			grid-template-columns: 1fr auto;
+			padding: 12px 6%;
+		}
+
+		.navigation {
+			display: none;
+		}
+
+		.instagram-link {
+			display: none;
+		}
+
+		.site-header :global(.mobile-menu) {
+			display: block;
+			justify-self: end;
+		}
+
+		.site-header :global(.mobile-menu-trigger) {
+			display: inline-flex;
+			border-color: rgb(255 255 255 / 20%);
+			border-radius: 50%;
+			background: var(--color-bicop-night);
+			color: var(--color-bicop-ice);
+		}
+
+		.site-header :global(.mobile-menu-trigger:hover) {
+			background: var(--color-bicop-stage);
+			color: var(--color-bicop-ice);
+		}
+
+		.menu-icon {
+			position: relative;
+			display: block;
+			width: 18px;
+			height: 1px;
+			background: currentColor;
+		}
+
+		.menu-icon::before,
+		.menu-icon::after {
+			position: absolute;
+			left: 0;
+			width: 18px;
+			height: 1px;
+			background: currentColor;
+			content: "";
+		}
+
+		.menu-icon::before {
+			top: -6px;
+		}
+
+		.menu-icon::after {
+			top: 6px;
+		}
+
+		.site-header :global(.mobile-sheet) {
+			border-color: rgb(255 255 255 / 14%);
+			background: var(--color-bicop-night);
+			color: var(--color-bicop-ice);
+		}
+
+		.site-header :global(.mobile-sheet-header) {
+			padding: 28px 24px 18px;
+		}
+
+		.site-header :global(.mobile-navigation) {
+			display: grid;
+			gap: 4px;
+			padding: 8px 24px;
+		}
+
+		.site-header :global(.mobile-navigation a) {
+			padding: 12px 0;
+			border-bottom: 1px solid rgb(255 255 255 / 10%);
+			color: var(--color-bicop-chrome);
+			font-size: 15px;
+			text-decoration: none;
+		}
+
+		.site-header :global(.mobile-navigation a:hover) {
+			color: var(--color-bicop-ice);
+		}
+
+		.site-header :global(.mobile-navigation .mobile-instagram) {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 12px;
+			border-bottom: 0;
+			color: var(--color-bicop-ice);
+		}
+
+		.site-header :global(.mobile-instagram span) {
+			color: var(--color-bicop-violet);
+		}
+
+		.brand {
+			gap: 8px;
+			font-size: 11px;
+		}
+
+		.brand img {
+			width: 35px;
+			height: 35px;
+		}
+	}
+</style>

@@ -1,0 +1,2201 @@
+//---
+//import Layout from '../layouts/Layout.astro';
+//import { members } from '../data/members';
+//
+//const instagramUrl = 'https://www.instagram.com/losbicop/';
+//const spotifyArtistUrl =
+//	'https://open.spotify.com/intl-es/artist/0CphSb0BsY0MgnzvU7rxpY?si=nTw3FQvLSEeXrK4WDzT0kA';
+//const podcastPlaylistUrl =
+//	'https://www.youtube.com/playlist?list=PLwuKhGv6voXERzgFaenDe8tiu56bpoNnD';
+//const podcastEpisodes = [
+//	{
+//		id: 'jwCHINUsRew',
+//		episode: 'BTV #8',
+//		title: 'Dancers destacados que dejaron el circuito',
+//	},
+//	{
+//		id: 'ln7qSa_GwGg',
+//		episode: 'BTV #7',
+//		title: 'Liche le contesta a Garay: música electrónica y productores',
+//	},
+//	{
+//		id: 'Cj57eJ2iozI',
+//		episode: 'BTV #6',
+//		title: 'Hagamos eventos en la calle: lugares públicos y reuniones',
+//	},
+//];
+//---
+//
+//<Layout>
+//	<header class="site-header">
+//		<a class="brand" href="#inicio" aria-label="Los Bicop, inicio">
+//			<img src="/images/logo-bicop.jpg" alt="" width="44" height="44" />
+//			<span>LOS <strong>BICOP</strong></span>
+//		</a>
+//		<nav aria-label="Navegación principal">
+//			<a href="#crew">La crew</a>
+//			<a href="#podcast">Podcast</a>
+//			<a href="#spotify">Spotify</a>
+//			<a href="#nosotros">Nosotros</a>
+//		</nav>
+//		<a class="header-link" href={instagramUrl} target="_blank" rel="noreferrer">
+//			Instagram <span aria-hidden="true">↗</span>
+//		</a>
+//	</header>
+//
+//	<main>
+//		<section class="hero" id="inicio" aria-labelledby="hero-title">
+//			<div class="hero-grid" aria-hidden="true"></div>
+//			<div class="hero-glow" aria-hidden="true"></div>
+//
+//			<div class="hero-intro">
+//				<p class="eyebrow"><span class="status-dot"></span> Electrodance desde Culiacán</p>
+//				<p class="hero-tagline">El ritmo<br />no pide permiso.</p>
+//				<a class="round-link" href="#crew">
+//					<span>Conoce al crew</span>
+//					<span class="round-arrow" aria-hidden="true">↓</span>
+//				</a>
+//			</div>
+//
+//			<figure class="hero-photo">
+//				<img
+//					class="group-photo"
+//					src="/images/integrantes-bicop.jpg"
+//					alt="Los integrantes de Los Bicop reunidos bajo luces azules y violetas"
+//					fetchpriority="high"
+//					width="1500"
+//					height="2048"
+//				/>
+//				<div class="photo-shade" aria-hidden="true"></div>
+//				{members.map((member) => (
+//					<a
+//						class="hotspot"
+//						href={`/integrantes/${member.id}/`}
+//						style={`left: ${member.x}%; top: ${member.y}%;`}
+//						aria-label={`Ver perfil de ${member.name || `integrante ${member.id}`}`}
+//					>
+//						<span>{member.id}</span>
+//					</a>
+//				))}
+//				<figcaption>
+//					<span>Una crew. Un solo pulso.</span>
+//					<span>CUL / SIN</span>
+//				</figcaption>
+//			</figure>
+//
+//			<div class="hero-wordmark" id="hero-title">
+//				<span>LOS</span>
+//				<span>BICOP<span class="wordmark-period">.</span></span>
+//			</div>
+//
+//			<div class="hero-stamp" aria-label="Los Bicop, electrodance">
+//				<img src="/images/logo-bicop.jpg" alt="" width="72" height="72" />
+//				<span>EL MOVIMIENTO<br />ES NUESTRO</span>
+//			</div>
+//
+//			<div class="hero-index" aria-hidden="true"><span>01</span> / 03</div>
+//		</section>
+//
+//		<div class="ticker" aria-label="Electrodance, energía, Culiacán, Los Bicop">
+//			<div class="ticker-track" aria-hidden="true">
+//				{Array.from({ length: 4 }, () => (
+//					<span>Electrodance <i>✳</i> Culiacán, Sinaloa <i>✳</i> Los Bicop <i>✳</i></span>
+//				))}
+//			</div>
+//		</div>
+//
+//		<section class="video-section" id="videoclip" aria-labelledby="video-title">
+//			<div class="video-heading">
+//				<p class="eyebrow"><span class="status-dot"></span> Dale play al movimiento</p>
+//				<h2 id="video-title">NUESTRO ÚLTIMO VIDEOCLIP.</h2>
+//			</div>
+//			<div class="video-frame">
+//				<button
+//					class="video-poster"
+//					type="button"
+//					data-video-id="uJ1IIQVMe9Y"
+//					data-video-title="Got A Crush - Los Bicop (Official video)"
+//					aria-label="Reproducir el último videoclip de Los Bicop"
+//				>
+//					<img
+//						src="https://i.ytimg.com/vi/uJ1IIQVMe9Y/maxresdefault.jpg"
+//						alt=""
+//						width="1280"
+//						height="720"
+//						fetchpriority="high"
+//					/>
+//					<span class="poster-play" aria-hidden="true">▶</span>
+//				</button>
+//			</div>
+//			<a
+//				class="video-link"
+//				href="https://youtu.be/uJ1IIQVMe9Y?si=AwwTtfrK97GZHnQ5"
+//				target="_blank"
+//				rel="noreferrer"
+//			>
+//				Ver en YouTube <span aria-hidden="true">↗</span>
+//			</a>
+//		</section>
+//
+//		<section class="crew-section" id="crew" aria-labelledby="crew-title">
+//			<div class="section-heading">
+//				<div>
+//					<p class="eyebrow"><span class="status-dot"></span> Las caras detrás del movimiento</p>
+//					<h2 id="crew-title">LA <span>CREW.</span></h2>
+//				</div>
+//				<p class="section-note">
+//					Un equipo, mil maneras de sentir el beat. Pasa por un punto en la foto o elige
+//					un integrante para abrir su página.
+//				</p>
+//			</div>
+//
+//			<div class="member-grid">
+//				{members.map((member) => (
+//					<article
+//						class="member-card"
+//						id={`integrante-card-${member.id}`}
+//						aria-labelledby={`member-name-${member.id}`}
+//					>
+//						<a
+//							class="member-card-main-link"
+//							href={`/integrantes/${member.id}/`}
+//							aria-label={`Ver perfil de ${member.name || `integrante ${member.id}`}`}
+//						></a>
+//						<div class="member-portrait" aria-hidden="true">
+//							{member.photo ? (
+//								<img
+//									class="member-photo"
+//									src={member.photo}
+//									alt=""
+//									loading="lazy"
+//									style={member.photoPosition ? `object-position: ${member.photoPosition}` : undefined}
+//								/>
+//							) : (
+//								<>
+//									<div class="portrait-orbit"></div>
+//									<span class="portrait-id">{member.id}</span>
+//									<span class="portrait-caption">Foto<br />próximamente</span>
+//								</>
+//							)}
+//						</div>
+//						<div class="member-info">
+//							<p class="member-kicker">Integrante {member.id}</p>
+//							<h3 id={`member-name-${member.id}`}>{member.name || 'Nombre por agregar'}</h3>
+//							<a class="member-profile-link" href={`/integrantes/${member.id}/`}>
+//								Ver ficha <span aria-hidden="true">↗</span>
+//							</a>
+//							{member.instagram ? (
+//								<a
+//									class="member-status"
+//									href={member.instagram}
+//									target="_blank"
+//									rel="noreferrer"
+//								>
+//									Instagram ↗
+//								</a>
+//							) : (
+//								<span class="member-status">Perfil en preparación</span>
+//							)}
+//						</div>
+//						<span class="card-arrow" aria-hidden="true">↗</span>
+//					</article>
+//				))}
+//			</div>
+//
+//			<p class="roster-note">
+//				Selecciona cualquier integrante para conocerlo en su propia página.
+//			</p>
+//		</section>
+//
+//		<section class="podcast-section" id="podcast" aria-labelledby="podcast-title">
+//			<div class="podcast-section-heading">
+//				<div>
+//					<p class="eyebrow"><span class="status-dot"></span> Historias, baile y cultura</p>
+//					<h2 id="podcast-title">EL <span>PODCAST.</span></h2>
+//				</div>
+//				<p class="podcast-section-note">
+//					Pláticas sin filtro sobre la escena, la música y todo lo que se vive fuera de la pista.
+//				</p>
+//			</div>
+//			<div class="podcast-shell">
+//				<header class="podcast-header">
+//					<div class="podcast-brand">
+//						<span class="podcast-icon" aria-hidden="true">▶</span>
+//						<div>
+//							<h3>PODCAST BTV LOS BICOP</h3>
+//							<a href={podcastPlaylistUrl} target="_blank" rel="noreferrer">
+//								Ver canal en YouTube ↗
+//							</a>
+//						</div>
+//					</div>
+//					<span class="episode-count">SERIE BTV · PLAYLIST</span>
+//				</header>
+//
+//				<div class="podcast-content">
+//					<div class="featured-episode">
+//						<div class="podcast-player">
+//							<button
+//								class="video-poster podcast-poster"
+//								type="button"
+//								data-video-id="AyMOfELE3-U"
+//								data-video-title="BTV #9 con Dano Opem Crew — Los Bicop"
+//								data-podcast-poster
+//								aria-label="Reproducir el último episodio del podcast"
+//							>
+//								<img
+//									src="https://i.ytimg.com/vi/AyMOfELE3-U/maxresdefault.jpg"
+//									alt=""
+//									width="1280"
+//									height="720"
+//									loading="lazy"
+//								/>
+//								<span class="poster-play" aria-hidden="true">▶</span>
+//							</button>
+//							<span class="latest-badge">Episodio más reciente</span>
+//							<div class="featured-title" data-podcast-title>
+//								<span data-featured-episode>LOS BICOP BTV #9</span>
+//								<strong data-featured-title>Con Dano Opem Crew: campeonato mundial y Vertifight</strong>
+//								<span class="featured-watch">Ver episodio ↗</span>
+//							</div>
+//						</div>
+//					</div>
+//
+//					<div class="podcast-episodes" aria-label="Más episodios del podcast">
+//						{podcastEpisodes.map((episode) => (
+//							<button
+//								class="episode-button"
+//								type="button"
+//								data-episode-id={episode.id}
+//								data-episode-title={`${episode.episode} — ${episode.title}`}
+//								data-episode-label={`${episode.episode} — ${episode.title}`}
+//								aria-label={`Reproducir ${episode.episode}: ${episode.title}`}
+//							>
+//								<img
+//									src={`https://i.ytimg.com/vi/${episode.id}/hqdefault.jpg`}
+//									alt=""
+//									width="160"
+//									height="90"
+//									loading="lazy"
+//								/>
+//								<span class="episode-copy">
+//									<span class="episode-number">{episode.episode}</span>
+//									<strong>{episode.title}</strong>
+//								</span>
+//								<span class="episode-arrow" aria-hidden="true">›</span>
+//							</button>
+//						))}
+//						<a class="all-episodes-link" href={podcastPlaylistUrl} target="_blank" rel="noreferrer">
+//							Ver todos los episodios <span aria-hidden="true">↗</span>
+//						</a>
+//					</div>
+//				</div>
+//			</div>
+//		</section>
+//
+//		<section class="spotify-section" id="spotify" aria-labelledby="spotify-title">
+//			<div class="spotify-content">
+//				<div class="spotify-copy">
+//					<p class="eyebrow"><span class="status-dot"></span> Los Bicop también se escuchan</p>
+//					<h2 id="spotify-title">EL FLOW<br />TAMBIÉN <span>SUENA.</span></h2>
+//					<p>
+//						Encuentra a Los Bicop en Spotify y lleva el ritmo contigo, dentro y fuera de la pista.
+//					</p>
+//					<a class="spotify-button" href={spotifyArtistUrl} target="_blank" rel="noreferrer">
+//						<span aria-hidden="true">▶</span>
+//						Escuchar en Spotify
+//						<strong aria-hidden="true">↗</strong>
+//					</a>
+//				</div>
+//				<div class="spotify-player">
+//					<iframe
+//						src="https://open.spotify.com/embed/artist/0CphSb0BsY0MgnzvU7rxpY?utm_source=generator&theme=0"
+//						title="Escucha a Los Bicop en Spotify"
+//						loading="lazy"
+//						allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+//						referrerpolicy="strict-origin-when-cross-origin"
+//					></iframe>
+//				</div>
+//			</div>
+//		</section>
+//
+//		<section class="about-section" id="nosotros" aria-labelledby="about-title">
+//			<div class="about-mark" aria-hidden="true">
+//				<img src="/images/logo-bicop.jpg" alt="" width="300" height="300" loading="lazy" />
+//			</div>
+//			<div class="about-copy">
+//				<p class="eyebrow"><span class="status-dot"></span> Desde Culiacán, para la pista</p>
+//				<h2 id="about-title">NO SOLO<br />BAILAMOS.<br /><span>LO ENCENDEMOS.</span></h2>
+//				<div class="about-bottom">
+//					<p>
+//						Somos Los Bicop: una crew de Culiacán unida por el electrodance, la música y
+//						las ganas de moverlo todo.
+//					</p>
+//					<a class="instagram-button" href={instagramUrl} target="_blank" rel="noreferrer">
+//						<span>Sigue el movimiento</span>
+//						<strong>@losbicop <span aria-hidden="true">↗</span></strong>
+//					</a>
+//				</div>
+//			</div>
+//		</section>
+//	</main>
+//
+//	<footer class="site-footer">
+//		<a class="footer-brand" href="#inicio">LOS BICOP<span>.</span></a>
+//		<p>Culiacán, Sinaloa · Electrodance</p>
+//		<a href={instagramUrl} target="_blank" rel="noreferrer">Instagram ↗</a>
+//	</footer>
+//	<button class="cinema-close" type="button" data-cinema-close aria-label="Cerrar modo cine" hidden>
+//		<span aria-hidden="true">×</span>
+//	</button>
+//</Layout>
+//
+//<script>
+//	const episodeButtons = document.querySelectorAll<HTMLButtonElement>('[data-episode-id]');
+//	const cinemaCloseButton = document.querySelector<HTMLButtonElement>('[data-cinema-close]');
+//	const videoPosters = document.querySelectorAll<HTMLButtonElement>('[data-video-id]');
+//	let activeCinemaFrame: HTMLElement | null = null;
+//
+//	function closeCinemaMode() {
+//		activeCinemaFrame?.querySelector('iframe')?.remove();
+//		activeCinemaFrame?.classList.remove('is-cinema');
+//		activeCinemaFrame = null;
+//		document.body.classList.remove('cinema-mode');
+//
+//		if (cinemaCloseButton) {
+//			cinemaCloseButton.hidden = true;
+//		}
+//	}
+//
+//	function openCinemaMode(videoId: string, title: string, frame: HTMLElement) {
+//		if (!videoId || !title) {
+//			console.error('No se pudo abrir el video en modo cine: faltan sus datos o su contenedor.');
+//			return;
+//		}
+//
+//		closeCinemaMode();
+//		activeCinemaFrame = frame;
+//		document.body.classList.add('cinema-mode');
+//
+//		if (cinemaCloseButton) {
+//			cinemaCloseButton.hidden = false;
+//		}
+//
+//		frame.classList.add('is-cinema');
+//		requestAnimationFrame(() => {
+//			if (activeCinemaFrame !== frame) {
+//				return;
+//			}
+//
+//			const iframe = document.createElement('iframe');
+//			iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+//			iframe.title = title;
+//			iframe.allow =
+//				'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+//			iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+//			iframe.allowFullscreen = true;
+//			iframe.setAttribute('aria-label', title);
+//			iframe.style.position = 'absolute';
+//			iframe.style.inset = '0';
+//			iframe.style.width = '100%';
+//			iframe.style.height = '100%';
+//			iframe.style.border = '0';
+//			frame.append(iframe);
+//		});
+//	}
+//
+//	cinemaCloseButton?.addEventListener('click', closeCinemaMode);
+//	document.addEventListener('keydown', (event) => {
+//		if (event.key === 'Escape' && activeCinemaFrame) {
+//			closeCinemaMode();
+//		}
+//	});
+//	document.body.addEventListener('click', (event) => {
+//		if (event.target === document.body && activeCinemaFrame) {
+//			closeCinemaMode();
+//		}
+//	});
+//
+//	videoPosters.forEach((poster) => {
+//		poster.addEventListener('click', () => {
+//			const videoId = poster.dataset.videoId;
+//			const title = poster.dataset.videoTitle;
+//			const frame = poster.closest<HTMLElement>('.video-frame, .podcast-player');
+//
+//			if (!videoId || !title || !frame) {
+//				console.error('No se pudo abrir el video en modo cine: faltan sus datos o su contenedor.');
+//				return;
+//			}
+//
+//			openCinemaMode(videoId, title, frame);
+//		});
+//	});
+//
+//	episodeButtons.forEach((button) => {
+//		button.addEventListener('click', () => {
+//			const videoId = button.dataset.episodeId;
+//			const title = button.dataset.episodeLabel;
+//			const podcastFrame = document.querySelector<HTMLElement>('.podcast-player');
+//
+//			if (!videoId || !title || !podcastFrame) {
+//				console.error('No se pudo abrir el episodio del podcast: faltan sus datos o su contenedor.');
+//				return;
+//			}
+//
+//			openCinemaMode(videoId, title, podcastFrame);
+//		});
+//	});
+//</script>
+//
+//<style>
+//	.site-header {
+//		position: absolute;
+//		z-index: 10;
+//		top: 0;
+//		left: 0;
+//		display: flex;
+//		width: 100%;
+//		height: 88px;
+//		align-items: center;
+//		justify-content: space-between;
+//		padding: 0 6.2%;
+//		border-bottom: 1px solid rgb(255 255 255 / 9%);
+//	}
+//
+//	.brand,
+//	.site-header nav,
+//	.header-link,
+//	.round-link,
+//	.hero-stamp,
+//	.site-footer {
+//		display: flex;
+//		align-items: center;
+//	}
+//
+//	.brand {
+//		gap: 11px;
+//		font-size: 13px;
+//		font-weight: 800;
+//		letter-spacing: 0.1em;
+//		text-decoration: none;
+//	}
+//
+//	.brand img {
+//		width: 42px;
+//		height: 42px;
+//		border: 1px solid rgb(255 255 255 / 18%);
+//		border-radius: 50%;
+//		object-fit: cover;
+//	}
+//
+//	.site-header nav {
+//		gap: 36px;
+//		margin-left: auto;
+//		margin-right: 44px;
+//	}
+//
+//	.site-header nav a,
+//	.header-link {
+//		color: #c6c5d0;
+//		font-size: 12px;
+//		text-decoration: none;
+//		transition: color 180ms ease;
+//	}
+//
+//	.site-header nav a:hover,
+//	.header-link:hover {
+//		color: #fff;
+//	}
+//
+//	.header-link {
+//		gap: 10px;
+//		padding: 11px 15px;
+//		border: 1px solid rgb(255 255 255 / 24%);
+//		border-radius: 2px;
+//		color: #fff;
+//	}
+//
+//	.header-link span {
+//		color: #a99aff;
+//	}
+//
+//	.hero {
+//		position: relative;
+//		display: flex;
+//		min-height: min(880px, 100svh);
+//		min-height: max(730px, min(880px, 100svh));
+//		overflow: hidden;
+//		align-items: center;
+//		background:
+//			radial-gradient(ellipse at 73% 47%, rgb(54 43 182 / 14%), transparent 40%),
+//			#08080d;
+//		isolation: isolate;
+//	}
+//
+//	.hero-grid {
+//		position: absolute;
+//		z-index: -1;
+//		inset: 0;
+//		background-image:
+//			linear-gradient(rgb(255 255 255 / 2.2%) 1px, transparent 1px),
+//			linear-gradient(90deg, rgb(255 255 255 / 2.2%) 1px, transparent 1px);
+//		background-size: 70px 70px;
+//		mask-image: linear-gradient(90deg, transparent, #000 55%, transparent);
+//	}
+//
+//	.hero-glow {
+//		position: absolute;
+//		z-index: -1;
+//		top: 23%;
+//		left: 21%;
+//		width: 340px;
+//		height: 340px;
+//		border-radius: 50%;
+//		background: #4038ff;
+//		filter: blur(190px);
+//		opacity: 0.23;
+//	}
+//
+//	.hero-intro {
+//		position: absolute;
+//		z-index: 3;
+//		top: 29%;
+//		left: 9%;
+//	}
+//
+//	.eyebrow {
+//		display: flex;
+//		align-items: center;
+//		gap: 10px;
+//		margin: 0;
+//		color: #b1b1c0;
+//		font-size: 11px;
+//		font-weight: 700;
+//		letter-spacing: 0.18em;
+//		text-transform: uppercase;
+//	}
+//
+//	.status-dot {
+//		width: 7px;
+//		height: 7px;
+//		flex: 0 0 7px;
+//		border-radius: 50%;
+//		background: #a797ff;
+//		box-shadow: 0 0 14px #8270ff;
+//	}
+//
+//	.hero-tagline {
+//		margin: 22px 0 30px;
+//		color: #f0eff6;
+//		font-size: clamp(26px, 3.1vw, 43px);
+//		font-weight: 700;
+//		letter-spacing: -0.055em;
+//		line-height: 1.02;
+//	}
+//
+//	.round-link {
+//		width: fit-content;
+//		gap: 15px;
+//		color: #b6b5c2;
+//		font-size: 11px;
+//		text-decoration: none;
+//	}
+//
+//	.round-arrow {
+//		display: grid;
+//		width: 37px;
+//		height: 37px;
+//		place-items: center;
+//		border: 1px solid rgb(255 255 255 / 30%);
+//		border-radius: 50%;
+//		color: #fff;
+//		font-size: 17px;
+//		transition:
+//			background 180ms ease,
+//			transform 180ms ease;
+//	}
+//
+//	.round-link:hover .round-arrow {
+//		transform: translateY(3px);
+//		background: #4038ff;
+//	}
+//
+//	.hero-photo {
+//		position: absolute;
+//		top: 13%;
+//		right: 13.5%;
+//		width: min(47vw, 610px);
+//		height: 77%;
+//		min-height: 560px;
+//		margin: 0;
+//	}
+//
+//	.group-photo {
+//		width: 100%;
+//		height: 100%;
+//		object-fit: cover;
+//		object-position: center 49%;
+//		-webkit-mask-image:
+//			linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
+//			linear-gradient(to bottom, transparent 0%, #000 13%, #000 87%, transparent 100%);
+//		-webkit-mask-composite: source-in;
+//		mask-image:
+//			linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
+//			linear-gradient(to bottom, transparent 0%, #000 13%, #000 87%, transparent 100%);
+//		mask-composite: intersect;
+//	}
+//
+//	.photo-shade {
+//		position: absolute;
+//		inset: 0;
+//		background:
+//			linear-gradient(180deg, rgb(7 7 13 / 7%), transparent 30%, rgb(7 7 13 / 35%)),
+//			linear-gradient(90deg, rgb(8 8 13 / 17%), transparent 42%);
+//		-webkit-mask-image:
+//			linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
+//			linear-gradient(to bottom, transparent 0%, #000 13%, #000 87%, transparent 100%);
+//		-webkit-mask-composite: source-in;
+//		mask-image:
+//			linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%),
+//			linear-gradient(to bottom, transparent 0%, #000 13%, #000 87%, transparent 100%);
+//		mask-composite: intersect;
+//		pointer-events: none;
+//	}
+//
+//	.hero-photo figcaption {
+//		position: absolute;
+//		right: 20px;
+//		bottom: 20px;
+//		left: 20px;
+//		display: flex;
+//		justify-content: space-between;
+//		color: rgb(255 255 255 / 76%);
+//		font-size: 9px;
+//		font-weight: 700;
+//		letter-spacing: 0.14em;
+//		text-transform: uppercase;
+//	}
+//
+//	.hotspot {
+//		position: absolute;
+//		z-index: 2;
+//		display: grid;
+//		width: 36px;
+//		height: 36px;
+//		place-items: center;
+//		transform: translate(-50%, -50%);
+//		border: 1px solid rgb(255 255 255 / 80%);
+//		border-radius: 50%;
+//		background: rgb(18 15 40 / 62%);
+//		box-shadow: 0 0 0 5px rgb(155 134 255 / 18%);
+//		color: #fff;
+//		font-size: 10px;
+//		font-weight: 700;
+//		text-decoration: none;
+//		transition:
+//			transform 180ms ease,
+//			background 180ms ease,
+//			box-shadow 180ms ease;
+//		backdrop-filter: blur(8px);
+//	}
+//
+//	.hotspot:hover,
+//	.hotspot:focus-visible {
+//		transform: translate(-50%, -50%) scale(1.2);
+//		border-color: #fff;
+//		background: #4038ff;
+//		box-shadow: 0 0 0 8px rgb(155 134 255 / 28%), 0 0 28px #7865ff;
+//	}
+//
+//	.hero-wordmark {
+//		position: absolute;
+//		z-index: 3;
+//		bottom: 11%;
+//		left: 6.2%;
+//		display: flex;
+//		flex-direction: column;
+//		color: #f8f7fc;
+//		font-size: clamp(100px, 15.8vw, 224px);
+//		font-weight: 900;
+//		letter-spacing: -0.105em;
+//		line-height: 0.7;
+//		pointer-events: none;
+//		text-shadow: 0 12px 52px rgb(0 0 0 / 28%);
+//	}
+//
+//	.hero-wordmark > span:first-child {
+//		margin-bottom: 0.16em;
+//		font-size: 0.43em;
+//		letter-spacing: -0.045em;
+//	}
+//
+//	.wordmark-period {
+//		color: #8f83ff;
+//	}
+//
+//	.hero-stamp {
+//		position: absolute;
+//		z-index: 4;
+//		top: 17%;
+//		right: 9%;
+//		gap: 11px;
+//		padding: 9px 14px 9px 9px;
+//		border: 1px solid rgb(255 255 255 / 23%);
+//		background: rgb(8 8 13 / 80%);
+//		color: #e7e6ed;
+//		font-size: 8px;
+//		font-weight: 700;
+//		letter-spacing: 0.13em;
+//		line-height: 1.5;
+//		backdrop-filter: blur(10px);
+//	}
+//
+//	.hero-stamp img {
+//		width: 47px;
+//		height: 47px;
+//		border-radius: 50%;
+//		object-fit: cover;
+//	}
+//
+//	.hero-index {
+//		position: absolute;
+//		right: 6.2%;
+//		bottom: 5%;
+//		color: #888797;
+//		font-size: 10px;
+//		letter-spacing: 0.15em;
+//	}
+//
+//	.hero-index span {
+//		color: #fff;
+//	}
+//
+//	.ticker {
+//		overflow: hidden;
+//		border-block: 1px solid rgb(255 255 255 / 13%);
+//		background: #0c0b15;
+//	}
+//
+//	.ticker-track {
+//		display: flex;
+//		width: max-content;
+//		animation: ticker 34s linear infinite;
+//	}
+//
+//	.ticker-track > span {
+//		padding: 19px 0;
+//		color: #d1cfdd;
+//		font-size: 11px;
+//		font-weight: 700;
+//		letter-spacing: 0.21em;
+//		text-transform: uppercase;
+//		white-space: nowrap;
+//	}
+//
+//	.ticker i {
+//		padding-inline: 30px;
+//		color: #9687ff;
+//		font-size: 13px;
+//		font-style: normal;
+//	}
+//
+//	@keyframes ticker {
+//		to {
+//			transform: translateX(-50%);
+//		}
+//	}
+//
+//	.video-section {
+//		display: flex;
+//		flex-direction: column;
+//		align-items: center;
+//		padding: 96px 9% 102px;
+//		background:
+//			radial-gradient(ellipse at 50% 72%, rgb(64 56 255 / 13%), transparent 48%),
+//			#090910;
+//		text-align: center;
+//	}
+//
+//	.video-heading h2 {
+//		margin: 17px 0 30px;
+//		font-size: clamp(34px, 5vw, 64px);
+//		font-weight: 900;
+//		letter-spacing: -0.075em;
+//		line-height: 0.95;
+//	}
+//
+//	.video-heading h2 span {
+//		color: #9688ff;
+//	}
+//
+//	.video-frame {
+//		position: relative;
+//		width: min(100%, 900px);
+//		overflow: hidden;
+//		aspect-ratio: 16 / 9;
+//		border: 1px solid rgb(170 158 255 / 35%);
+//		background: #11101a;
+//		box-shadow: 0 0 65px rgb(64 56 255 / 15%);
+//	}
+//
+//	.video-poster {
+//		position: absolute;
+//		inset: 0;
+//		display: grid;
+//		width: 100%;
+//		height: 100%;
+//		overflow: hidden;
+//		place-items: center;
+//		padding: 0;
+//		border: 0;
+//		background: #08080d;
+//		cursor: pointer;
+//	}
+//
+//	.video-poster img {
+//		position: absolute;
+//		inset: 0;
+//		width: 100%;
+//		height: 100%;
+//		object-fit: cover;
+//		transition: transform 350ms ease;
+//	}
+//
+//	.video-poster::after {
+//		position: absolute;
+//		inset: 0;
+//		background: linear-gradient(180deg, rgb(8 8 13 / 4%), rgb(8 8 13 / 23%));
+//		content: "";
+//	}
+//
+//	.video-poster:hover img {
+//		transform: scale(1.025);
+//	}
+//
+//	.poster-play {
+//		position: relative;
+//		z-index: 1;
+//		display: grid;
+//		width: 66px;
+//		height: 66px;
+//		place-items: center;
+//		padding-left: 4px;
+//		border: 1px solid rgb(255 255 255 / 75%);
+//		border-radius: 50%;
+//		background: rgb(8 8 13 / 55%);
+//		color: #fff;
+//		font-size: 19px;
+//		backdrop-filter: blur(8px);
+//		transition:
+//			transform 180ms ease,
+//			background 180ms ease;
+//	}
+//
+//	.video-poster:hover .poster-play {
+//		transform: scale(1.08);
+//		background: #4038ff;
+//	}
+//
+//	.video-frame.is-cinema .video-poster,
+//	.podcast-player.is-cinema .video-poster {
+//		visibility: hidden;
+//	}
+//
+//	.video-frame.is-cinema,
+//	.podcast-player.is-cinema {
+//		position: fixed;
+//		z-index: 1001;
+//		top: 50%;
+//		left: 50%;
+//		width: min(92vw, 1280px, calc(86dvh * 16 / 9));
+//		aspect-ratio: 16 / 9;
+//		transform: translate(-50%, -50%);
+//		border: 1px solid rgb(169 154 255 / 55%);
+//		box-shadow: 0 24px 100px rgb(0 0 0 / 65%), 0 0 55px rgb(64 56 255 / 22%);
+//		animation: cinema-enter 220ms ease-out both;
+//	}
+//
+//	.podcast-player.is-cinema .latest-badge,
+//	.podcast-player.is-cinema .featured-title {
+//		opacity: 0;
+//		pointer-events: none;
+//	}
+//
+//	:global(body.cinema-mode) {
+//		overflow: hidden;
+//	}
+//
+//	:global(body.cinema-mode)::before {
+//		position: fixed;
+//		z-index: 1000;
+//		inset: 0;
+//		background: rgb(3 3 8 / 88%);
+//		backdrop-filter: blur(6px);
+//		content: "";
+//	}
+//
+//	.cinema-close {
+//		position: fixed;
+//		z-index: 1002;
+//		top: 24px;
+//		right: 24px;
+//		display: grid;
+//		width: 46px;
+//		height: 46px;
+//		place-items: center;
+//		padding: 0;
+//		border: 1px solid rgb(255 255 255 / 25%);
+//		border-radius: 50%;
+//		background: #11101a;
+//		color: #f3f2f8;
+//		cursor: pointer;
+//		font: inherit;
+//		font-size: 12px;
+//		transition:
+//			border-color 180ms ease,
+//			background 180ms ease,
+//			transform 180ms ease;
+//	}
+//
+//	.cinema-close[hidden] {
+//		display: none;
+//	}
+//
+//	.cinema-close span {
+//		color: #a99aff;
+//		font-size: 30px;
+//		font-weight: 300;
+//		line-height: 1;
+//	}
+//
+//	.cinema-close:hover {
+//		transform: rotate(90deg);
+//		border-color: #a99aff;
+//		background: #1b1830;
+//	}
+//
+//	@keyframes cinema-enter {
+//		from {
+//			opacity: 0;
+//			transform: translate(-50%, -48%) scale(0.97);
+//		}
+//
+//		to {
+//			opacity: 1;
+//			transform: translate(-50%, -50%) scale(1);
+//		}
+//	}
+//
+//	.video-frame iframe {
+//		position: absolute;
+//		inset: 0;
+//		width: 100%;
+//		height: 100%;
+//		border: 0;
+//	}
+//
+//	.video-link {
+//		display: inline-flex;
+//		align-items: center;
+//		gap: 12px;
+//		margin-top: 21px;
+//		color: #d8d5e6;
+//		font-size: 11px;
+//		font-weight: 700;
+//		letter-spacing: 0.08em;
+//		text-decoration: none;
+//		text-transform: uppercase;
+//		transition: color 180ms ease;
+//	}
+//
+//	.video-link span {
+//		color: #a496ff;
+//		font-size: 16px;
+//	}
+//
+//	.video-link:hover {
+//		color: #fff;
+//	}
+//
+//	.podcast-section {
+//		padding: 88px 6.2% 96px;
+//		background:
+//			radial-gradient(ellipse at 50% 34%, rgb(64 56 255 / 10%), transparent 56%),
+//			#08080d;
+//	}
+//
+//	.podcast-section-heading {
+//		display: flex;
+//		align-items: flex-end;
+//		justify-content: space-between;
+//		gap: 36px;
+//		max-width: 1240px;
+//		margin: 0 auto 34px;
+//	}
+//
+//	.podcast-section-heading h2 {
+//		margin: 19px 0 0;
+//		color: #f3f2f8;
+//		font-size: clamp(55px, 8vw, 92px);
+//		font-weight: 900;
+//		letter-spacing: -0.09em;
+//		line-height: 0.86;
+//	}
+//
+//	.podcast-section-heading h2 span {
+//		color: #9083ff;
+//	}
+//
+//	.podcast-section-note {
+//		max-width: 340px;
+//		margin: 0 0 3px;
+//		color: #a6a5b3;
+//		font-size: 14px;
+//		line-height: 1.7;
+//	}
+//
+//	.podcast-shell {
+//		overflow: hidden;
+//		max-width: 1240px;
+//		margin-inline: auto;
+//		border: 1px solid rgb(255 255 255 / 13%);
+//		background: #0d0c13;
+//	}
+//
+//	.podcast-header {
+//		display: flex;
+//		min-height: 78px;
+//		align-items: center;
+//		justify-content: space-between;
+//		gap: 18px;
+//		padding: 15px 25px;
+//		border-bottom: 1px solid rgb(255 255 255 / 12%);
+//		background: #0b0a11;
+//	}
+//
+//	.podcast-brand {
+//		display: flex;
+//		align-items: center;
+//		gap: 14px;
+//	}
+//
+//	.podcast-icon {
+//		display: grid;
+//		width: 38px;
+//		height: 38px;
+//		flex: 0 0 38px;
+//		place-items: center;
+//		border: 1px solid rgb(255 255 255 / 15%);
+//		border-radius: 50%;
+//		background: rgb(64 56 255 / 14%);
+//		color: #a99aff;
+//		font-size: 13px;
+//	}
+//
+//	.podcast-brand h3 {
+//		margin: 0;
+//		color: #e6e7ef;
+//		font-size: 15px;
+//		font-weight: 800;
+//		letter-spacing: 0.1em;
+//	}
+//
+//	.podcast-brand a {
+//		display: inline-block;
+//		margin-top: 5px;
+//		color: #9699aa;
+//		font-size: 9px;
+//		font-weight: 700;
+//		letter-spacing: 0.14em;
+//		text-decoration: none;
+//		text-transform: uppercase;
+//	}
+//
+//	.podcast-brand a:hover {
+//		color: #c7bdff;
+//	}
+//
+//	.episode-count {
+//		color: #9699aa;
+//		font-size: 9px;
+//		font-weight: 700;
+//		letter-spacing: 0.14em;
+//		white-space: nowrap;
+//	}
+//
+//	.podcast-content {
+//		display: grid;
+//		grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.98fr);
+//	}
+//
+//	.featured-episode {
+//		min-width: 0;
+//		border-right: 1px solid rgb(255 255 255 / 12%);
+//		background: #08080d;
+//	}
+//
+//	.podcast-player {
+//		position: relative;
+//		overflow: hidden;
+//		aspect-ratio: 16 / 9;
+//		background: #08080d;
+//		isolation: isolate;
+//	}
+//
+//	.podcast-player iframe {
+//		position: absolute;
+//		inset: 0;
+//		width: 100%;
+//		height: 100%;
+//		border: 0;
+//	}
+//
+//	.podcast-player::after {
+//		position: absolute;
+//		z-index: 1;
+//		inset: 28% 0 0;
+//		background: linear-gradient(transparent, rgb(5 6 12 / 92%));
+//		content: "";
+//		pointer-events: none;
+//	}
+//
+//	.latest-badge {
+//		position: absolute;
+//		z-index: 2;
+//		top: 18px;
+//		right: 18px;
+//		padding: 8px 12px;
+//		border: 1px solid rgb(144 131 255 / 45%);
+//		background: rgb(8 8 13 / 82%);
+//		color: #c4baff;
+//		font-size: 9px;
+//		font-weight: 800;
+//		letter-spacing: 0.1em;
+//		text-transform: uppercase;
+//		pointer-events: none;
+//	}
+//
+//	.featured-title {
+//		position: absolute;
+//		z-index: 2;
+//		right: 24px;
+//		bottom: 22px;
+//		left: 24px;
+//		display: flex;
+//		flex-direction: column;
+//		gap: 7px;
+//		color: #fff;
+//		text-align: left;
+//		text-decoration: none;
+//		pointer-events: none;
+//	}
+//
+//	.featured-title > span:first-child {
+//		color: #b9adff;
+//		font-size: 10px;
+//		font-weight: 700;
+//		letter-spacing: 0.17em;
+//	}
+//
+//	.featured-title strong {
+//		max-width: 620px;
+//		font-size: clamp(20px, 3.2vw, 40px);
+//		font-weight: 800;
+//		line-height: 1.08;
+//		text-wrap: balance;
+//	}
+//
+//	.featured-watch {
+//		color: #c1c2cc;
+//		font-size: 9px;
+//		font-weight: 700;
+//		letter-spacing: 0.14em;
+//		text-transform: uppercase;
+//	}
+//
+//	.podcast-episodes {
+//		display: flex;
+//		min-width: 0;
+//		flex-direction: column;
+//		background: #100f17;
+//	}
+//
+//	.episode-button {
+//		display: grid;
+//		min-height: 112px;
+//		grid-template-columns: minmax(90px, 34%) minmax(0, 1fr) 13px;
+//		align-items: center;
+//		gap: 14px;
+//		padding: 13px 18px;
+//		border: 0;
+//		border-bottom: 1px solid rgb(255 255 255 / 10%);
+//		background: transparent;
+//		color: inherit;
+//		cursor: pointer;
+//		text-align: left;
+//		transition: background 180ms ease;
+//	}
+//
+//	.episode-button:hover,
+//	.episode-button[aria-pressed="true"] {
+//		background: rgb(64 56 255 / 12%);
+//	}
+//
+//	.episode-button img {
+//		display: block;
+//		width: 100%;
+//		aspect-ratio: 16 / 9;
+//		border-radius: 2px;
+//		object-fit: cover;
+//	}
+//
+//	.episode-copy {
+//		display: flex;
+//		min-width: 0;
+//		flex-direction: column;
+//		gap: 7px;
+//	}
+//
+//	.episode-number {
+//		color: #a99aff;
+//		font-size: 10px;
+//		font-weight: 700;
+//		letter-spacing: 0.1em;
+//	}
+//
+//	.episode-copy strong {
+//		display: -webkit-box;
+//		overflow: hidden;
+//		color: #e6e7ef;
+//		font-size: clamp(12px, 1.3vw, 17px);
+//		font-weight: 700;
+//		line-height: 1.15;
+//		text-overflow: ellipsis;
+//		-webkit-box-orient: vertical;
+//		-webkit-line-clamp: 2;
+//	}
+//
+//	.episode-arrow {
+//		color: #9699aa;
+//		font-size: 23px;
+//		line-height: 1;
+//		transition:
+//			transform 180ms ease,
+//			color 180ms ease;
+//	}
+//
+//	.episode-button:hover .episode-arrow,
+//	.episode-button[aria-pressed="true"] .episode-arrow {
+//		transform: translateX(3px);
+//		color: #c7bdff;
+//	}
+//
+//	.all-episodes-link {
+//		display: flex;
+//		min-height: 48px;
+//		align-items: center;
+//		justify-content: space-between;
+//		margin-top: auto;
+//		padding: 12px 20px;
+//		color: #c6c4d2;
+//		font-size: 10px;
+//		font-weight: 700;
+//		letter-spacing: 0.1em;
+//		text-decoration: none;
+//		text-transform: uppercase;
+//		transition:
+//			color 180ms ease,
+//			background 180ms ease;
+//	}
+//
+//	.all-episodes-link span {
+//		color: #a99aff;
+//		font-size: 15px;
+//	}
+//
+//	.all-episodes-link:hover {
+//		background: rgb(64 56 255 / 12%);
+//		color: #fff;
+//	}
+//
+//	.spotify-section {
+//		padding: 96px 9%;
+//		border-block: 1px solid rgb(255 255 255 / 10%);
+//		background:
+//			radial-gradient(ellipse at 76% 50%, rgb(64 56 255 / 13%), transparent 42%),
+//			#0d0c13;
+//	}
+//
+//	.spotify-content {
+//		display: grid;
+//		max-width: 1120px;
+//		grid-template-columns: minmax(0, 0.85fr) minmax(360px, 1fr);
+//		align-items: center;
+//		gap: clamp(40px, 8vw, 112px);
+//		margin-inline: auto;
+//	}
+//
+//	.spotify-copy h2 {
+//		margin: 20px 0;
+//		font-size: clamp(48px, 6vw, 76px);
+//		font-weight: 900;
+//		letter-spacing: -0.09em;
+//		line-height: 0.9;
+//	}
+//
+//	.spotify-copy h2 span {
+//		color: #9083ff;
+//	}
+//
+//	.spotify-copy > p:not(.eyebrow) {
+//		max-width: 370px;
+//		margin: 0;
+//		color: #a6a5b3;
+//		font-size: 14px;
+//		line-height: 1.7;
+//	}
+//
+//	.spotify-button {
+//		display: inline-flex;
+//		align-items: center;
+//		gap: 12px;
+//		margin-top: 25px;
+//		padding: 13px 17px;
+//		border: 1px solid rgb(169 154 255 / 48%);
+//		background: rgb(64 56 255 / 12%);
+//		color: #f3f2f8;
+//		font-size: 11px;
+//		font-weight: 700;
+//		letter-spacing: 0.08em;
+//		text-decoration: none;
+//		text-transform: uppercase;
+//		transition:
+//			border-color 180ms ease,
+//			background 180ms ease;
+//	}
+//
+//	.spotify-button:hover {
+//		border-color: #a99aff;
+//		background: rgb(64 56 255 / 25%);
+//	}
+//
+//	.spotify-button > span {
+//		display: grid;
+//		width: 25px;
+//		height: 25px;
+//		place-items: center;
+//		border-radius: 50%;
+//		background: #4038ff;
+//		font-size: 10px;
+//	}
+//
+//	.spotify-button strong {
+//		color: #a99aff;
+//		font-size: 15px;
+//	}
+//
+//	.spotify-player {
+//		position: relative;
+//		overflow: hidden;
+//		min-height: 352px;
+//		border: 1px solid rgb(144 131 255 / 34%);
+//		border-radius: 16px;
+//		background: #1f1f1f;
+//		box-shadow:
+//			0 18px 60px rgb(0 0 0 / 26%),
+//			0 0 36px rgb(64 56 255 / 9%);
+//		isolation: isolate;
+//	}
+//
+//	.spotify-player iframe {
+//		position: relative;
+//		z-index: 1;
+//		display: block;
+//		width: 100%;
+//		height: 352px;
+//		border: 0;
+//		border-radius: 15px;
+//		background: #1f1f1f;
+//	}
+//
+//	.crew-section {
+//		padding: 112px 9% 120px;
+//		background:
+//			radial-gradient(ellipse at 88% 45%, rgb(79 55 208 / 8%), transparent 42%),
+//			#0a0a10;
+//	}
+//
+//	.section-heading {
+//		display: flex;
+//		align-items: flex-end;
+//		justify-content: space-between;
+//		gap: 36px;
+//		margin-bottom: 44px;
+//	}
+//
+//	.section-heading h2 {
+//		margin: 19px 0 0;
+//		font-size: clamp(55px, 8vw, 105px);
+//		font-weight: 900;
+//		letter-spacing: -0.09em;
+//		line-height: 0.86;
+//	}
+//
+//	.section-heading h2 span {
+//		color: #9083ff;
+//	}
+//
+//	.section-note {
+//		max-width: 340px;
+//		margin: 0 0 4px;
+//		color: #a6a5b3;
+//		font-size: 14px;
+//		line-height: 1.7;
+//	}
+//
+//	.member-grid {
+//		display: grid;
+//		grid-template-columns: repeat(4, minmax(0, 1fr));
+//		gap: 12px;
+//	}
+//
+//	.member-card {
+//		position: relative;
+//		min-width: 0;
+//		padding: 11px;
+//		border: 1px solid rgb(255 255 255 / 12%);
+//		background: linear-gradient(145deg, rgb(255 255 255 / 4%), rgb(255 255 255 / 1%));
+//		scroll-margin-top: 25px;
+//		transition:
+//			transform 200ms ease,
+//			border-color 200ms ease,
+//			background 200ms ease;
+//	}
+//
+//	.member-card:hover,
+//	.member-card:focus-within {
+//		transform: translateY(-5px);
+//		border-color: rgb(151 133 255 / 72%);
+//		background: linear-gradient(145deg, rgb(90 69 207 / 18%), rgb(255 255 255 / 2%));
+//	}
+//
+//	.member-portrait {
+//		position: relative;
+//		display: grid;
+//		min-height: 192px;
+//		overflow: hidden;
+//		place-items: center;
+//		background:
+//			radial-gradient(ellipse at 50% 70%, rgb(64 56 255 / 39%), transparent 53%),
+//			linear-gradient(155deg, #171522, #0d0c12 72%);
+//	}
+//
+//	.member-photo {
+//		width: 100%;
+//		height: 100%;
+//		position: absolute;
+//		inset: 0;
+//		object-fit: cover;
+//	}
+//
+//	.member-portrait::before,
+//	.member-portrait::after {
+//		position: absolute;
+//		content: "";
+//	}
+//
+//	.member-portrait::before {
+//		inset: 12px;
+//		border: 1px solid rgb(255 255 255 / 9%);
+//	}
+//
+//	.portrait-orbit {
+//		position: absolute;
+//		width: 116px;
+//		height: 116px;
+//		border: 1px solid rgb(175 164 255 / 35%);
+//		border-radius: 50%;
+//		box-shadow:
+//			0 0 35px rgb(100 78 255 / 30%),
+//			inset 0 0 32px rgb(100 78 255 / 12%);
+//	}
+//
+//	.portrait-orbit::before,
+//	.portrait-orbit::after {
+//		position: absolute;
+//		border: 1px solid rgb(255 255 255 / 16%);
+//		border-radius: 50%;
+//		content: "";
+//	}
+//
+//	.portrait-orbit::before {
+//		inset: 13px -12px;
+//		transform: rotate(-35deg);
+//	}
+//
+//	.portrait-orbit::after {
+//		inset: -12px 13px;
+//		transform: rotate(35deg);
+//	}
+//
+//	.portrait-id {
+//		position: relative;
+//		color: #f2f0ff;
+//		font-size: 46px;
+//		font-weight: 900;
+//		letter-spacing: -0.08em;
+//		text-shadow: 0 0 26px rgb(169 153 255 / 62%);
+//	}
+//
+//	.portrait-caption {
+//		position: absolute;
+//		right: 18px;
+//		bottom: 18px;
+//		color: #b7b3c9;
+//		font-size: 9px;
+//		letter-spacing: 0.08em;
+//		line-height: 1.5;
+//		text-align: right;
+//		text-transform: uppercase;
+//	}
+//
+//	.member-info {
+//		padding: 17px 6px 7px;
+//	}
+//
+//	.member-kicker {
+//		margin: 0 0 6px;
+//		color: #9183ff;
+//		font-size: 9px;
+//		font-weight: 700;
+//		letter-spacing: 0.16em;
+//		text-transform: uppercase;
+//	}
+//
+//	.member-info h3 {
+//		margin: 0 0 10px;
+//		color: #efedf5;
+//		font-size: 17px;
+//		letter-spacing: -0.035em;
+//	}
+//
+//	.member-card-main-link {
+//		position: absolute;
+//		display: block;
+//		z-index: 1;
+//		inset: 0;
+//		border-radius: inherit;
+//	}
+//
+//	.member-info {
+//		position: relative;
+//		z-index: 2;
+//		pointer-events: none;
+//	}
+//
+//	.member-info a {
+//		position: relative;
+//		z-index: 2;
+//		pointer-events: auto;
+//	}
+//
+//	.member-profile-link {
+//		display: inline-flex;
+//		align-items: center;
+//		gap: 6px;
+//		margin-bottom: 10px;
+//		color: #c7bdff;
+//		font-size: 10px;
+//		font-weight: 700;
+//		text-decoration: none;
+//	}
+//
+//	.member-profile-link:hover {
+//		color: #fff;
+//	}
+//
+//	.member-status {
+//		color: #858493;
+//		font-size: 10px;
+//	}
+//
+//	a.member-status {
+//		display: inline-block;
+//		text-decoration-color: rgb(133 132 147 / 50%);
+//		text-underline-offset: 3px;
+//	}
+//
+//	.card-arrow {
+//		position: absolute;
+//		top: 18px;
+//		right: 18px;
+//		display: grid;
+//		width: 27px;
+//		height: 27px;
+//		place-items: center;
+//		border: 1px solid rgb(255 255 255 / 22%);
+//		border-radius: 50%;
+//		color: #d2caff;
+//		font-size: 12px;
+//		transition:
+//			transform 180ms ease,
+//			background 180ms ease;
+//	}
+//
+//	.member-card:hover .card-arrow,
+//	.member-card:focus-within .card-arrow {
+//		transform: rotate(45deg);
+//		background: #4038ff;
+//	}
+//
+//	.roster-note {
+//		margin: 25px 0 0;
+//		color: #777684;
+//		font-size: 11px;
+//		letter-spacing: 0.03em;
+//		text-align: right;
+//	}
+//
+//	.about-section {
+//		position: relative;
+//		display: grid;
+//		min-height: 520px;
+//		overflow: hidden;
+//		grid-template-columns: 0.9fr 1.1fr;
+//		align-items: center;
+//		padding: 95px 12%;
+//		border-block: 1px solid rgb(255 255 255 / 10%);
+//		background:
+//			radial-gradient(ellipse at 15% 50%, rgb(64 56 255 / 15%), transparent 40%),
+//			#0d0c13;
+//	}
+//
+//	.about-mark {
+//		display: grid;
+//		place-items: center;
+//	}
+//
+//	.about-mark img {
+//		width: min(290px, 75%);
+//		height: auto;
+//		border: 1px solid rgb(255 255 255 / 14%);
+//		border-radius: 50%;
+//		box-shadow: 0 0 90px rgb(78 66 255 / 16%);
+//	}
+//
+//	.about-copy h2 {
+//		margin: 20px 0 25px;
+//		font-size: clamp(42px, 5.5vw, 73px);
+//		font-weight: 900;
+//		letter-spacing: -0.085em;
+//		line-height: 0.91;
+//	}
+//
+//	.about-copy h2 span {
+//		color: #9a8cff;
+//	}
+//
+//	.about-bottom {
+//		display: flex;
+//		align-items: flex-end;
+//		justify-content: space-between;
+//		gap: 24px;
+//	}
+//
+//	.about-bottom > p {
+//		max-width: 280px;
+//		margin: 0;
+//		color: #a6a5b3;
+//		font-size: 13px;
+//		line-height: 1.7;
+//	}
+//
+//	.instagram-button {
+//		display: flex;
+//		min-width: 174px;
+//		flex-direction: column;
+//		gap: 7px;
+//		padding: 13px 16px;
+//		border: 1px solid rgb(255 255 255 / 22%);
+//		background: rgb(255 255 255 / 3%);
+//		text-decoration: none;
+//		transition:
+//			border-color 180ms ease,
+//			background 180ms ease;
+//	}
+//
+//	.instagram-button:hover {
+//		border-color: #8b7cff;
+//		background: rgb(64 56 255 / 15%);
+//	}
+//
+//	.instagram-button > span {
+//		color: #9997a7;
+//		font-size: 9px;
+//		letter-spacing: 0.1em;
+//		text-transform: uppercase;
+//	}
+//
+//	.instagram-button strong {
+//		display: flex;
+//		align-items: center;
+//		justify-content: space-between;
+//		color: #f3f1fa;
+//		font-size: 13px;
+//	}
+//
+//	.instagram-button strong span {
+//		color: #a496ff;
+//		font-size: 15px;
+//	}
+//
+//	.site-footer {
+//		min-height: 82px;
+//		justify-content: space-between;
+//		padding: 18px 6.2%;
+//		color: #898795;
+//		font-size: 10px;
+//	}
+//
+//	.footer-brand {
+//		color: #e9e7ef;
+//		font-size: 12px;
+//		font-weight: 900;
+//		letter-spacing: 0.08em;
+//		text-decoration: none;
+//	}
+//
+//	.footer-brand span {
+//		color: #9083ff;
+//	}
+//
+//	.site-footer p {
+//		margin: 0;
+//	}
+//
+//	.site-footer > a:last-child {
+//		color: #c5c1d8;
+//		text-decoration: none;
+//	}
+//
+//	@media (min-width: 1440px) {
+//		.hero {
+//			min-height: 920px;
+//		}
+//	}
+//
+//	@media (max-width: 950px) {
+//		.hero {
+//			min-height: 760px;
+//		}
+//
+//		.hero-photo {
+//			right: 7%;
+//			width: 55vw;
+//		}
+//
+//		.hero-intro {
+//			left: 6%;
+//		}
+//
+//		.hero-wordmark {
+//			left: 5%;
+//			font-size: clamp(105px, 18vw, 165px);
+//		}
+//
+//		.hero-stamp {
+//			right: 5%;
+//		}
+//
+//		.crew-section {
+//			padding-inline: 6%;
+//		}
+//
+//		.member-grid {
+//			grid-template-columns: repeat(2, minmax(0, 1fr));
+//		}
+//
+//		.member-portrait {
+//			min-height: 235px;
+//		}
+//
+//		.about-section {
+//			padding-inline: 7%;
+//		}
+//
+//		.spotify-section {
+//			padding-inline: 7%;
+//		}
+//
+//		.spotify-content {
+//			grid-template-columns: 1fr;
+//			gap: 30px;
+//		}
+//
+//		.spotify-copy h2 {
+//			font-size: clamp(54px, 8vw, 72px);
+//		}
+//	}
+//
+//	@media (max-width: 640px) {
+//		.site-header {
+//			height: 70px;
+//			padding-inline: 5%;
+//		}
+//
+//		.brand {
+//			gap: 8px;
+//			font-size: 11px;
+//		}
+//
+//		.brand img {
+//			width: 35px;
+//			height: 35px;
+//		}
+//
+//		.site-header nav {
+//			display: none;
+//		}
+//
+//		.header-link {
+//			gap: 6px;
+//			padding: 9px 11px;
+//			font-size: 10px;
+//		}
+//
+//		.hero {
+//			min-height: 790px;
+//			min-height: max(750px, 100svh);
+//			align-items: flex-start;
+//		}
+//
+//		.hero-intro {
+//			top: 115px;
+//			left: 7%;
+//		}
+//
+//		.eyebrow {
+//			font-size: 9px;
+//		}
+//
+//		.hero-tagline {
+//			margin: 13px 0 15px;
+//			font-size: 26px;
+//		}
+//
+//		.round-link {
+//			font-size: 10px;
+//		}
+//
+//		.round-arrow {
+//			width: 31px;
+//			height: 31px;
+//		}
+//
+//		.hero-photo {
+//			top: 34%;
+//			right: 8%;
+//			width: 75%;
+//			height: 54%;
+//			min-height: 0;
+//			border-radius: 45% 45% 2px 2px;
+//		}
+//
+//		.hero-photo figcaption {
+//			right: 13px;
+//			bottom: 13px;
+//			left: 13px;
+//			font-size: 7px;
+//		}
+//
+//		.hotspot {
+//			width: 30px;
+//			height: 30px;
+//			font-size: 9px;
+//		}
+//
+//		.hero-stamp {
+//			top: 31%;
+//			right: 5%;
+//			gap: 7px;
+//			padding: 6px 9px 6px 6px;
+//			font-size: 7px;
+//		}
+//
+//		.hero-stamp img {
+//			width: 36px;
+//			height: 36px;
+//		}
+//
+//		.hero-wordmark {
+//			bottom: 9%;
+//			left: 6%;
+//			font-size: clamp(101px, 24vw, 145px);
+//		}
+//
+//		.hero-wordmark > span:first-child {
+//			font-size: 0.36em;
+//		}
+//
+//		.hero-index {
+//			right: 6%;
+//			bottom: 3%;
+//		}
+//
+//		.ticker-track > span {
+//			padding-block: 15px;
+//			font-size: 9px;
+//		}
+//
+//		.ticker i {
+//			padding-inline: 17px;
+//		}
+//
+//		.video-section {
+//			padding: 68px 5% 76px;
+//		}
+//
+//		.podcast-section {
+//			padding: 62px 5% 70px;
+//		}
+//
+//		.podcast-section-heading {
+//			align-items: flex-start;
+//			flex-direction: column;
+//			gap: 15px;
+//			margin-bottom: 25px;
+//		}
+//
+//		.podcast-section-heading h2 {
+//			margin-top: 15px;
+//			font-size: 68px;
+//		}
+//
+//		.podcast-section-note {
+//			max-width: 390px;
+//			font-size: 12px;
+//		}
+//
+//		.podcast-header {
+//			min-height: 69px;
+//			padding: 13px 15px;
+//		}
+//
+//		.podcast-brand {
+//			gap: 10px;
+//		}
+//
+//		.podcast-icon {
+//			width: 32px;
+//			height: 32px;
+//			flex-basis: 32px;
+//			font-size: 11px;
+//		}
+//
+//		.podcast-brand h3 {
+//			font-size: 11px;
+//			letter-spacing: 0.08em;
+//		}
+//
+//		.podcast-brand a {
+//			font-size: 8px;
+//		}
+//
+//		.episode-count {
+//			font-size: 7px;
+//			letter-spacing: 0.07em;
+//		}
+//
+//		.podcast-content {
+//			grid-template-columns: 1fr;
+//		}
+//
+//		.featured-episode {
+//			border-right: 0;
+//			border-bottom: 1px solid #273047;
+//		}
+//
+//		.latest-badge {
+//			top: 10px;
+//			right: 10px;
+//			padding: 6px 9px;
+//			font-size: 7px;
+//		}
+//
+//		.featured-title {
+//			right: 13px;
+//			bottom: 13px;
+//			left: 13px;
+//			gap: 5px;
+//		}
+//
+//		.featured-title > span:first-child {
+//			font-size: 8px;
+//		}
+//
+//		.featured-title strong {
+//			font-size: clamp(16px, 5vw, 24px);
+//		}
+//
+//		.featured-watch {
+//			font-size: 8px;
+//		}
+//
+//		.episode-button {
+//			min-height: 86px;
+//			grid-template-columns: 105px minmax(0, 1fr) 12px;
+//			gap: 12px;
+//			padding: 10px 13px;
+//		}
+//
+//		.episode-copy strong {
+//			font-size: 12px;
+//		}
+//
+//		.video-heading h2 {
+//			max-width: 340px;
+//			margin: 15px 0 23px;
+//			font-size: clamp(35px, 10vw, 48px);
+//		}
+//
+//		.crew-section {
+//			padding: 78px 6% 83px;
+//		}
+//
+//		.spotify-section {
+//			padding: 68px 7% 76px;
+//		}
+//
+//		.spotify-content {
+//			gap: 24px;
+//		}
+//
+//		.spotify-copy h2 {
+//			margin: 16px 0;
+//			font-size: clamp(48px, 12vw, 64px);
+//		}
+//
+//		.spotify-copy > p:not(.eyebrow) {
+//			font-size: 12px;
+//		}
+//
+//		.spotify-player {
+//			min-height: 352px;
+//		}
+//
+//		.section-heading {
+//			align-items: flex-start;
+//			flex-direction: column;
+//			gap: 17px;
+//			margin-bottom: 27px;
+//		}
+//
+//		.section-heading h2 {
+//			margin-top: 15px;
+//			font-size: 68px;
+//		}
+//
+//		.section-note {
+//			max-width: 390px;
+//			font-size: 12px;
+//		}
+//
+//		.member-grid {
+//			gap: 8px;
+//		}
+//
+//		.member-card {
+//			padding: 7px;
+//		}
+//
+//		.member-portrait {
+//			min-height: 155px;
+//		}
+//
+//		.member-portrait::before {
+//			inset: 8px;
+//		}
+//
+//		.portrait-orbit {
+//			width: 82px;
+//			height: 82px;
+//		}
+//
+//		.portrait-id {
+//			font-size: 36px;
+//		}
+//
+//		.portrait-caption {
+//			right: 11px;
+//			bottom: 11px;
+//			font-size: 7px;
+//		}
+//
+//		.member-info {
+//			padding: 13px 3px 5px;
+//		}
+//
+//		.member-kicker {
+//			font-size: 8px;
+//		}
+//
+//		.member-info h3 {
+//			font-size: 13px;
+//		}
+//
+//		.member-status {
+//			font-size: 8px;
+//		}
+//
+//		.card-arrow {
+//			top: 13px;
+//			right: 13px;
+//			width: 23px;
+//			height: 23px;
+//		}
+//
+//		.roster-note {
+//			margin-top: 17px;
+//			font-size: 9px;
+//			line-height: 1.6;
+//			text-align: left;
+//		}
+//
+//		.about-section {
+//			min-height: 0;
+//			grid-template-columns: 1fr;
+//			gap: 24px;
+//			padding: 66px 7% 72px;
+//		}
+//
+//		.about-mark img {
+//			width: 145px;
+//		}
+//
+//		.about-copy h2 {
+//			margin: 17px 0 20px;
+//			font-size: clamp(43px, 11vw, 64px);
+//		}
+//
+//		.about-bottom {
+//			align-items: flex-start;
+//			flex-direction: column;
+//			gap: 19px;
+//		}
+//
+//		.about-bottom > p {
+//			font-size: 12px;
+//		}
+//
+//		.instagram-button {
+//			width: 100%;
+//		}
+//
+//		.site-footer {
+//			min-height: 75px;
+//			flex-wrap: wrap;
+//			gap: 12px;
+//			padding-inline: 6%;
+//			font-size: 9px;
+//		}
+//	}
+//</style>
