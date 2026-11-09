@@ -39,7 +39,9 @@ const {
 				decoding="async"
 			/>
 			<span class="video-player__play" aria-hidden="true">
-				<PlayIcon/>
+				<span class="video-player__play-control">
+					<PlayIcon />
+				</span>
 			</span>
 		</DialogTrigger>
 
@@ -182,10 +184,9 @@ const {
 	.video-player__trigger {
 		position: absolute;
 		inset: 0;
-		display: grid;
+		display: block;
 		width: 100%;
 		height: 100%;
-		place-items: center;
 		overflow: hidden;
 		padding: 0;
 		border: 0;
@@ -212,8 +213,15 @@ const {
 	}
 
 	.video-player__play {
-		position: relative;
+		position: absolute;
+		inset: 0;
 		z-index: 1;
+		display: grid;
+		place-items: center;
+		pointer-events: none;
+	}
+
+	.video-player__play-control {
 		display: grid;
 		width: 66px;
 		height: 66px;
@@ -234,7 +242,7 @@ const {
 		transform: scale(1.025);
 	}
 
-	.video-player__trigger:hover .video-player__play {
+	.video-player__trigger:hover .video-player__play-control {
 		transform: scale(1.08);
 		background: var(--color-bicop-electric);
 	}
@@ -250,20 +258,34 @@ const {
 		top: 50%;
 		left: 50%;
 		margin: 0;
-		width: min(92vw, 1280px, calc(86dvh * 16 / 9));
+		width: min(
+			calc(100vw - 7.5rem),
+			64rem,
+			calc((100vh - 5.5rem) * 16 / 9)
+		);
+		height: calc(
+			min(calc((100vw - 7.5rem) * 9 / 16), 36rem, calc(100vh - 5.5rem)) + 3.5rem
+		);
+		max-height: calc(100vh - 2rem);
+		width: min(
+			calc(100vw - 7.5rem),
+			64rem,
+			calc((100dvh - 5.5rem) * 16 / 9)
+		);
+		height: calc(
+			min(calc((100vw - 7.5rem) * 9 / 16), 36rem, calc(100dvh - 5.5rem)) + 3.5rem
+		);
+		max-height: calc(100dvh - 2rem);
+		box-sizing: border-box;
 		max-width: none;
-		aspect-ratio: 16 / 9;
 		--tw-translate-x: 0px;
 		--tw-translate-y: 0px;
 		transform: translate(-50%, -50%);
 		overflow: visible;
-		padding: 0;
-		border: 1px solid color-mix(in srgb, var(--color-bicop-violet) 60%, transparent);
+		padding: 3.5rem 0 0;
+		border: 0;
 		border-radius: 0;
-		background: var(--color-bicop-night);
-		box-shadow:
-			0 24px 100px rgb(0 0 0 / 65%),
-			0 0 55px color-mix(in srgb, var(--color-bicop-electric) 22%, transparent);
+		background: transparent;
 	}
 
 	:global(.video-dialog-content[data-state="open"]) {
@@ -275,24 +297,40 @@ const {
 	}
 
 	:global(.video-dialog-content [data-slot="dialog-close"]) {
-		top: -58px;
-		right: 0;
+		top: 6px;
+		right: -44px;
 		display: grid;
 		width: 44px;
 		height: 44px;
 		place-items: center;
-		border: 1px solid rgb(255 255 255 / 30%);
+		border: 1px solid color-mix(in srgb, var(--color-bicop-violet) 48%, transparent);
 		border-radius: 50%;
+		background: rgb(8 9 16 / 84%);
+		backdrop-filter: blur(10px);
+		box-shadow: 0 4px 14px rgb(0 0 0 / 32%);
+		color: var(--color-bicop-ice);
+		transition:
+			background-color 180ms ease,
+			border-color 180ms ease,
+			color 180ms ease;
+	}
+
+	:global(.video-dialog-content [data-slot="dialog-close"]:hover) {
+		border-color: var(--color-bicop-violet);
 		background: var(--color-bicop-stage);
 		color: var(--color-bicop-ice);
 	}
 
 	.video-player__media {
 		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
+		inset: 3.5rem 0 0;
+		box-sizing: border-box;
 		overflow: hidden;
+		border: 1px solid color-mix(in srgb, var(--color-bicop-violet) 60%, transparent);
+		background: var(--color-bicop-night);
+		box-shadow:
+			0 24px 100px rgb(0 0 0 / 65%),
+			0 0 55px color-mix(in srgb, var(--color-bicop-electric) 22%, transparent);
 	}
 
 	.video-player__media :global(iframe) {
@@ -324,20 +362,16 @@ const {
 	}
 
 	@media (max-width: 640px) {
-		.video-player__play {
+		.video-player__play-control {
 			width: 54px;
 			height: 54px;
 			font-size: 16px;
-		}
-
-		:global(.video-dialog-content) {
-			width: min(92vw, calc(86dvh * 16 / 9));
 		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
 		.video-player__poster,
-		.video-player__play,
+		.video-player__play-control,
 		:global(.video-dialog-content[data-state]) {
 			transition: none;
 			animation: none;
