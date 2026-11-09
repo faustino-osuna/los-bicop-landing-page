@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 88px;
+}
+
+@media (max-width: 760px) {
+	html {
+		scroll-padding-top: 76px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
