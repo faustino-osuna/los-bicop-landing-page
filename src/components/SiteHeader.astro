@@ -21,7 +21,9 @@ const spotifyUrl = 'https://open.spotify.com/intl-es/artist/0CphSb0BsY0MgnzvU7rx
 	</a>
 
 	<nav class="navigation" aria-label="Navegación principal">
+		<a href="#inicio">Inicio</a>
 		<a href="#videoclip">Videoclip</a>
+		<a href="#musica">Música</a>
 	</nav>
 
 	<div class="header-socials">
@@ -59,7 +61,9 @@ const spotifyUrl = 'https://open.spotify.com/intl-es/artist/0CphSb0BsY0MgnzvU7rx
 				<SheetDescription>Navegación principal</SheetDescription>
 			</SheetHeader>
 			<nav class="mobile-navigation" aria-label="Navegación móvil">
+				<SheetClose asChild><a href="#inicio">Inicio</a></SheetClose>
 				<SheetClose asChild><a href="#videoclip">Ver videoclip</a></SheetClose>
+				<SheetClose asChild><a href="#musica">Nuestra música</a></SheetClose>
 				<SheetClose asChild>
 					<a class="mobile-instagram" href={instagramUrl} target="_blank" rel="noreferrer">
 						<svg class="instagram-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">

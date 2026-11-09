@@ -1,0 +1,437 @@
+---
+import { Button } from './starwind/button';
+
+const release = {
+	title: 'Got a Crush',
+	artist: 'Los Bicop',
+	year: '2026',
+	format: 'Sencillo',
+	trackCount: 1,
+	duration: '3:40',
+	rights: '℗ 2026 HMP ENT',
+	albumUrl: 'https://open.spotify.com/intl-es/album/6JBJkAKQAj3qRgONLKLPg4',
+	trackEmbedUrl:
+		'https://open.spotify.com/embed/track/12HE8cIiLJIIff1NIoD9ps?utm_source=generator',
+	coverUrl:
+		'https://i.scdn.co/image/ab67616d00001e02c47c07df6bb3f9319f97a6f2',
+};
+
+const releaseDetails = [
+	{ label: 'ARTISTA', value: release.artist },
+	{ label: 'FORMATO', value: release.format },
+	{ label: 'DURACIÓN', value: release.duration },
+	{ label: 'DERECHOS', value: release.rights },
+];
+---
+
+<section class="album-section" id="musica" aria-labelledby="album-title">
+	<div class="album-glow" aria-hidden="true"></div>
+	<div class="album-layout" data-album-reveal>
+		<figure class="album-artwork">
+			<div class="vinyl-record" aria-hidden="true"></div>
+			<img
+				class="album-cover"
+				src={release.coverUrl}
+				alt={`Portada del sencillo ${release.title} de ${release.artist}`}
+				width="300"
+				height="300"
+				loading="lazy"
+				decoding="async"
+			/>
+		</figure>
+
+		<div class="album-content">
+			<p class="album-overline"><span aria-hidden="true"></span>Lanzamiento destacado</p>
+			<h2 id="album-title">{release.title}</h2>
+			<p class="album-byline">
+				{release.artist}<span aria-hidden="true">·</span>{release.format}<span aria-hidden="true">·</span>{release.year}
+			</p>
+			<p class="album-description">
+				El sencillo de Los Bicop ya está en Spotify. Reprodúcelo aquí o abre el lanzamiento completo en la plataforma.
+			</p>
+
+			<div class="spotify-player">
+				<p class="player-label">
+					<span>Escucha el sencillo</span>
+					<span>Pista 1 de {release.trackCount}</span>
+				</p>
+				<iframe
+					title={`Reproductor de Spotify: ${release.title} — ${release.artist}`}
+					src={release.trackEmbedUrl}
+					width="100%"
+					height="152"
+					allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+					loading="lazy"
+				></iframe>
+			</div>
+
+			<dl class="release-details" aria-label="Datos del lanzamiento">
+				{releaseDetails.map(({ label, value }) => (
+					<div class="release-detail">
+						<dt>{label}</dt>
+						<dd>{value}</dd>
+					</div>
+				))}
+			</dl>
+
+			<Button
+				as="a"
+				href={release.albumUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				variant="primary"
+				size="lg"
+				class="spotify-cta"
+			>
+				<svg viewBox="0 0 24 24" aria-hidden="true">
+					<circle cx="12" cy="12" r="10" fill="currentColor" />
+					<path
+						d="M6.4 9.2c3.7-1.1 7.9-.7 11.1 1.2M7.2 12.1c3.1-.9 6.4-.5 9.2 1M8 14.9c2.4-.7 4.9-.4 7 .8"
+						fill="none"
+						stroke="var(--color-bicop-night)"
+						stroke-linecap="round"
+						stroke-width="1.6"
+					/>
+				</svg>
+				<span>Escuchar en Spotify</span>
+				<svg class="external-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+					<path d="M5 11 11 5M5.5 5H11v5.5" stroke="currentColor" stroke-width="1.5" />
+				</svg>
+			</Button>
+		</div>
+	</div>
+</section>
+
+<script>
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
+
+	const section = document.querySelector<HTMLElement>('.album-section');
+	const artwork = section?.querySelector<HTMLElement>('.album-artwork');
+	const content = section?.querySelector<HTMLElement>('.album-content');
+
+	if (section && artwork && content) {
+		gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+			gsap
+				.timeline({
+					scrollTrigger: {
+						trigger: section,
+						start: 'top 76%',
+						once: true,
+					},
+				})
+				.fromTo(
+					artwork,
+					{ autoAlpha: 0, x: -24, scale: 0.98 },
+					{ autoAlpha: 1, x: 0, scale: 1, duration: 0.85, ease: 'power3.out' },
+				)
+				.fromTo(
+					content.children,
+					{ autoAlpha: 0, y: 18 },
+					{
+						autoAlpha: 1,
+						y: 0,
+						duration: 0.65,
+						ease: 'power3.out',
+						stagger: 0.08,
+					},
+					'-=0.56',
+				);
+		});
+	}
+</script>
+
+<style>
+	@media (prefers-reduced-motion: no-preference) {
+		:global(html[data-hero-motion="enabled"]) .album-layout[data-album-reveal] .album-artwork,
+		:global(html[data-hero-motion="enabled"]) .album-layout[data-album-reveal] .album-content > * {
+			visibility: hidden;
+		}
+	}
+
+	.album-section {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+		padding: clamp(84px, 10vw, 132px) 6%;
+		background:
+			radial-gradient(
+				ellipse at 25% 52%,
+				color-mix(in srgb, var(--color-bicop-electric) 11%, transparent),
+				transparent 44%
+			),
+			var(--color-bicop-night);
+		color: var(--color-bicop-ice);
+	}
+
+	.album-glow {
+		position: absolute;
+		z-index: -1;
+		top: 50%;
+		left: 23%;
+		width: min(44vw, 520px);
+		aspect-ratio: 1;
+		transform: translate(-50%, -50%);
+		border-radius: 50%;
+		background: color-mix(in srgb, var(--color-bicop-violet) 54%, var(--color-bicop-electric));
+		filter: blur(145px);
+		opacity: 0.16;
+		pointer-events: none;
+	}
+
+	.album-layout {
+		display: grid;
+		width: min(100%, 1180px);
+		grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+		align-items: center;
+		gap: clamp(44px, 8vw, 112px);
+		margin-inline: auto;
+	}
+
+	.album-artwork {
+		position: relative;
+		width: min(100%, 470px);
+		aspect-ratio: 1;
+		margin: 0 auto;
+	}
+
+	.vinyl-record {
+		position: absolute;
+		top: 50%;
+		left: 15%;
+		width: 82%;
+		aspect-ratio: 1;
+		transform: translateY(-50%);
+		border: 1px solid rgb(244 245 255 / 24%);
+		border-radius: 50%;
+		background:
+			radial-gradient(ellipse at 67% 26%, rgb(244 245 255 / 25%), transparent 30%),
+			repeating-radial-gradient(
+				circle at center,
+				#252630 0 1px,
+				#0b0c12 2px 3px,
+				#1a1b24 4px 4.5px,
+				#080910 5.5px 7px
+			);
+		box-shadow:
+			0 26px 52px rgb(0 0 0 / 48%),
+			inset 0 0 34px rgb(0 0 0 / 55%);
+	}
+
+	.album-cover {
+		position: absolute;
+		z-index: 1;
+		top: 50%;
+		left: 0;
+		width: 80%;
+		height: 80%;
+		transform: translateY(-50%);
+		border: 1px solid rgb(244 245 255 / 34%);
+		background: var(--color-bicop-stage);
+		box-shadow: 0 26px 64px rgb(0 0 0 / 55%);
+		object-fit: cover;
+	}
+
+	.album-content {
+		width: min(100%, 550px);
+	}
+
+	.album-overline {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		margin: 0 0 16px;
+		color: var(--color-bicop-chrome);
+		font-size: 11px;
+		font-weight: 800;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+	}
+
+	.album-overline span {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background: var(--color-bicop-violet);
+		box-shadow: 0 0 14px var(--color-bicop-violet);
+	}
+
+	.album-content h2 {
+		margin: 0;
+		font-size: clamp(44px, 6vw, 72px);
+		font-weight: 900;
+		letter-spacing: -0.075em;
+		line-height: 0.98;
+		text-wrap: balance;
+	}
+
+	.album-byline {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 9px;
+		margin: 14px 0 0;
+		color: var(--color-bicop-chrome);
+		font-size: 15px;
+		font-weight: 600;
+	}
+
+	.album-byline span {
+		color: var(--color-bicop-violet);
+	}
+
+	.album-description {
+		max-width: 52ch;
+		margin: 24px 0 26px;
+		color: var(--color-bicop-chrome);
+		font-size: 14px;
+		line-height: 1.75;
+	}
+
+	.spotify-player {
+		padding: 10px;
+		border: 1px solid color-mix(in srgb, var(--color-bicop-chrome) 22%, transparent);
+		background: color-mix(in srgb, var(--color-bicop-stage) 72%, transparent);
+		box-shadow: 0 18px 48px rgb(0 0 0 / 24%);
+	}
+
+	.player-label {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		margin: 2px 5px 10px;
+		color: var(--color-bicop-chrome);
+		font-size: 10px;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
+
+	.player-label span:last-child {
+		text-align: right;
+		white-space: nowrap;
+	}
+
+	.spotify-player iframe {
+		display: block;
+		width: 100%;
+		height: 152px;
+		border: 0;
+		border-radius: 8px;
+		background: var(--color-bicop-night);
+	}
+
+	.release-details {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		margin: 26px 0 24px;
+	}
+
+	.release-detail {
+		min-width: 0;
+		padding: 13px 10px 12px 0;
+		border-top: 1px solid color-mix(in srgb, var(--color-bicop-chrome) 22%, transparent);
+	}
+
+	.release-detail:nth-child(even) {
+		padding-left: 18px;
+	}
+
+	.release-detail dt {
+		margin-bottom: 5px;
+		color: var(--color-bicop-chrome);
+		font-size: 9px;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+	}
+
+	.release-detail dd {
+		margin: 0;
+		color: var(--color-bicop-ice);
+		font-size: 13px;
+		font-weight: 700;
+		line-height: 1.4;
+		overflow-wrap: anywhere;
+	}
+
+	.spotify-cta {
+		display: inline-flex;
+		min-height: 52px;
+		gap: 11px;
+		padding-inline: 21px;
+		border-radius: 999px;
+		background: var(--color-bicop-electric);
+		color: var(--color-bicop-ice);
+		font-size: 14px;
+		font-weight: 800;
+		text-decoration: none;
+		transition:
+			transform 180ms ease,
+			background-color 180ms ease,
+			box-shadow 180ms ease;
+	}
+
+	.spotify-cta > svg:first-child {
+		width: 20px;
+		height: 20px;
+	}
+
+	.spotify-cta .external-icon {
+		width: 16px;
+		height: 16px;
+	}
+
+	.spotify-cta:hover {
+		transform: translateY(-2px);
+		background: color-mix(in srgb, var(--color-bicop-electric) 82%, var(--color-bicop-violet));
+		box-shadow: 0 10px 28px color-mix(in srgb, var(--color-bicop-electric) 32%, transparent);
+	}
+
+	.spotify-cta:focus-visible {
+		outline: 2px solid var(--color-bicop-ice);
+		outline-offset: 4px;
+	}
+
+	@media (max-width: 900px) {
+		.album-layout {
+			grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+			gap: clamp(28px, 5vw, 54px);
+		}
+	}
+
+	@media (max-width: 680px) {
+		.album-section {
+			padding-inline: 5%;
+		}
+
+		.album-layout {
+			max-width: 540px;
+			grid-template-columns: minmax(0, 1fr);
+			gap: 44px;
+		}
+
+		.album-artwork {
+			width: min(82vw, 390px);
+		}
+
+		.album-content h2 {
+			font-size: clamp(42px, 11vw, 58px);
+		}
+
+		.album-description {
+			margin-block: 20px 22px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.spotify-cta {
+			transition: none;
+		}
+
+		.spotify-cta:hover {
+			transform: none;
+		}
+	}
+</style>

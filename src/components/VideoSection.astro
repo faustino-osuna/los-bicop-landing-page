@@ -53,8 +53,14 @@ const youtubeUrl = 'https://youtu.be/uJ1IIQVMe9Y?si=AwwTtfrK97GZHnQ5';
 		align-items: center;
 		padding: clamp(68px, 8vw, 96px) 6% clamp(76px, 8vw, 102px);
 		background:
+			linear-gradient(
+				to bottom,
+				transparent 56%,
+				color-mix(in srgb, var(--color-bicop-night) 72%, transparent) 82%,
+				var(--color-bicop-night) 100%
+			),
 			radial-gradient(
-				ellipse at 50% 72%,
+				ellipse at 50% 62%,
 				color-mix(in srgb, var(--color-bicop-electric) 13%, transparent),
 				transparent 48%
 			),
