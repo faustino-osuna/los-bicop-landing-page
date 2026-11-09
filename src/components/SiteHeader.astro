@@ -11,6 +11,7 @@ import {
 } from './starwind/sheet';
 
 const instagramUrl = 'https://www.instagram.com/losbicop/';
+const spotifyUrl = 'https://open.spotify.com/intl-es/artist/0CphSb0BsY0MgnzvU7rxpY';
 ---
 
 <header class="site-header">
@@ -20,15 +21,26 @@ const instagramUrl = 'https://www.instagram.com/losbicop/';
 	</a>
 
 	<nav class="navigation" aria-label="Navegación principal">
-		<a href="#crew">La crew</a>
-		<a href="#podcast">Podcast</a>
-		<a href="#spotify">Spotify</a>
-		<a href="#nosotros">Nosotros</a>
+		<a href="#videoclip">Videoclip</a>
 	</nav>
 
-	<a class="instagram-link" href={instagramUrl} target="_blank" rel="noreferrer">
-		Instagram <span aria-hidden="true">↗</span>
-	</a>
+	<div class="header-socials">
+		<a class="instagram-link" href={instagramUrl} target="_blank" rel="noreferrer">
+			<svg class="instagram-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+				<rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.7" />
+				<circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7" />
+				<circle cx="17.5" cy="6.8" r="1" fill="currentColor" />
+			</svg>
+			<span>Instagram</span>
+		</a>
+		<a class="spotify-link" href={spotifyUrl} aria-label="Escúchanos en Spotify" target="_blank">
+			<svg class="spotify-icon" viewBox="0 0 24 24" aria-hidden="true">
+				<circle cx="12" cy="12" r="10" fill="currentColor" />
+				<path d="M6.4 9.2c3.7-1.1 7.9-.7 11.1 1.2M7.2 12.1c3.1-.9 6.4-.5 9.2 1M8 14.9c2.4-.7 4.9-.4 7 .8" fill="none" stroke="var(--color-bicop-night)" stroke-linecap="round" stroke-width="1.6" />
+			</svg>
+			<span>Spotify</span>
+		</a>
+	</div>
 
 	<Sheet class="mobile-menu">
 		<SheetTrigger asChild>
@@ -47,13 +59,24 @@ const instagramUrl = 'https://www.instagram.com/losbicop/';
 				<SheetDescription>Navegación principal</SheetDescription>
 			</SheetHeader>
 			<nav class="mobile-navigation" aria-label="Navegación móvil">
-				<SheetClose asChild><a href="#crew">La crew</a></SheetClose>
-				<SheetClose asChild><a href="#podcast">Podcast</a></SheetClose>
-				<SheetClose asChild><a href="#spotify">Spotify</a></SheetClose>
-				<SheetClose asChild><a href="#nosotros">Nosotros</a></SheetClose>
+				<SheetClose asChild><a href="#videoclip">Ver videoclip</a></SheetClose>
 				<SheetClose asChild>
 					<a class="mobile-instagram" href={instagramUrl} target="_blank" rel="noreferrer">
-						Instagram <span aria-hidden="true">↗</span>
+						<svg class="instagram-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+							<rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.7" />
+							<circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.7" />
+							<circle cx="17.5" cy="6.8" r="1" fill="currentColor" />
+						</svg>
+						<span>Instagram</span>
+					</a>
+				</SheetClose>
+				<SheetClose asChild>
+					<a class="mobile-spotify" href={spotifyUrl} aria-label="Escúchanos en Spotify" target="_blank">
+						<svg class="spotify-icon" viewBox="0 0 24 24" aria-hidden="true">
+							<circle cx="12" cy="12" r="10" fill="currentColor" />
+							<path d="M6.4 9.2c3.7-1.1 7.9-.7 11.1 1.2M7.2 12.1c3.1-.9 6.4-.5 9.2 1M8 14.9c2.4-.7 4.9-.4 7 .8" fill="none" stroke="var(--color-bicop-night)" stroke-linecap="round" stroke-width="1.6" />
+						</svg>
+						<span>Escúchanos en Spotify</span>
 					</a>
 				</SheetClose>
 			</nav>
@@ -80,7 +103,7 @@ const instagramUrl = 'https://www.instagram.com/losbicop/';
 
 	.brand,
 	.navigation,
-	.instagram-link {
+	.header-socials {
 		display: flex;
 		align-items: center;
 	}
@@ -107,30 +130,75 @@ const instagramUrl = 'https://www.instagram.com/losbicop/';
 		gap: clamp(20px, 2.5vw, 36px);
 	}
 
-	.navigation a,
-	.instagram-link {
+	.navigation a {
 		color: var(--color-bicop-chrome);
-		font-size: 12px;
+		font-size: 14px;
 		text-decoration: none;
+		transition: color 180ms ease, text-shadow 180ms ease;
+	}
+
+	.navigation a:hover {
+		color: var(--color-bicop-ice);
+		text-shadow: 0 0 16px color-mix(in srgb, var(--color-bicop-violet) 45%, transparent);
+	}
+
+	.header-socials {
+		justify-self: end;
+		gap: clamp(8px, 1vw, 12px);
+	}
+
+	.instagram-link,
+	.spotify-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 9px;
+		padding: 10px 15px;
+		border: 1px solid color-mix(in srgb, var(--color-bicop-chrome) 34%, transparent);
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--color-bicop-stage) 48%, transparent);
+		color: var(--color-bicop-ice);
+		font-size: 13px;
+		text-decoration: none;
+		transition:
+			border-color 180ms ease,
+			background-color 180ms ease,
+			box-shadow 180ms ease,
+			color 180ms ease;
+	}
+
+	.instagram-icon {
+		width: 16px;
+		height: 16px;
+		color: var(--color-bicop-violet);
+	}
+
+	.spotify-link {
+		border-color: color-mix(in srgb, var(--color-bicop-chrome) 26%, transparent);
+		color: var(--color-bicop-chrome);
+	}
+
+	.spotify-icon {
+		width: 18px;
+		height: 18px;
+		color: var(--color-bicop-chrome);
 		transition: color 180ms ease;
 	}
 
-	.navigation a:hover,
 	.instagram-link:hover {
+		border-color: color-mix(in srgb, var(--color-bicop-violet) 74%, transparent);
+		background: color-mix(in srgb, var(--color-bicop-stage) 76%, transparent);
+		box-shadow: 0 0 20px color-mix(in srgb, var(--color-bicop-electric) 20%, transparent);
+	}
+
+	.spotify-link:hover {
+		border-color: color-mix(in srgb, #1ed760 72%, transparent);
+		background: color-mix(in srgb, var(--color-bicop-stage) 76%, transparent);
+		box-shadow: 0 0 18px color-mix(in srgb, #1ed760 17%, transparent);
 		color: var(--color-bicop-ice);
 	}
 
-	.instagram-link {
-		justify-self: end;
-		gap: 10px;
-		padding: 11px 15px;
-		border: 1px solid rgb(255 255 255 / 24%);
-		border-radius: 2px;
-		color: var(--color-bicop-ice);
-	}
-
-	.instagram-link span {
-		color: var(--color-bicop-violet);
+	.spotify-link:hover .spotify-icon {
+		color: #1ed760;
 	}
 
 	.site-header :global(.mobile-menu) {
@@ -143,9 +211,15 @@ const instagramUrl = 'https://www.instagram.com/losbicop/';
 
 	.brand:focus-visible,
 	.navigation a:focus-visible,
-	.instagram-link:focus-visible {
+	.instagram-link:focus-visible,
+	.spotify-link:focus-visible {
 		outline: 2px solid var(--color-bicop-violet);
 		outline-offset: 4px;
+	}
+
+	.navigation a:focus-visible {
+		color: var(--color-bicop-ice);
+		text-shadow: 0 0 16px color-mix(in srgb, var(--color-bicop-violet) 45%, transparent);
 	}
 
 	@media (max-width: 760px) {
@@ -159,7 +233,7 @@ const instagramUrl = 'https://www.instagram.com/losbicop/';
 			display: none;
 		}
 
-		.instagram-link {
+		.header-socials {
 			display: none;
 		}
 
@@ -224,27 +298,59 @@ const instagramUrl = 'https://www.instagram.com/losbicop/';
 		}
 
 		.site-header :global(.mobile-navigation a) {
+			display: flex;
+			min-height: 48px;
+			align-items: center;
 			padding: 12px 0;
 			border-bottom: 1px solid rgb(255 255 255 / 10%);
 			color: var(--color-bicop-chrome);
-			font-size: 15px;
+			font-size: 16px;
 			text-decoration: none;
+			transition: color 180ms ease, border-color 180ms ease;
 		}
 
 		.site-header :global(.mobile-navigation a:hover) {
 			color: var(--color-bicop-ice);
+			border-color: color-mix(in srgb, var(--color-bicop-violet) 42%, transparent);
 		}
 
 		.site-header :global(.mobile-navigation .mobile-instagram) {
 			display: flex;
-			justify-content: space-between;
+			gap: 10px;
 			margin-top: 12px;
 			border-bottom: 0;
 			color: var(--color-bicop-ice);
 		}
 
-		.site-header :global(.mobile-instagram span) {
-			color: var(--color-bicop-violet);
+		.site-header :global(.mobile-navigation .mobile-spotify) {
+			display: flex;
+			gap: 10px;
+			border-bottom: 0;
+			color: var(--color-bicop-chrome);
+			transition: color 180ms ease;
+		}
+
+		.site-header :global(.mobile-instagram .instagram-icon) {
+			flex: 0 0 auto;
+		}
+
+		.site-header :global(.mobile-spotify .spotify-icon) {
+			flex: 0 0 auto;
+		}
+
+		.site-header :global(.mobile-spotify:hover) {
+			color: var(--color-bicop-ice);
+		}
+
+		.site-header :global(.mobile-spotify:hover .spotify-icon) {
+			color: #1ed760;
+		}
+
+		.site-header :global(.mobile-navigation a:focus-visible) {
+			border-radius: 2px;
+			outline: 2px solid var(--color-bicop-violet);
+			outline-offset: 3px;
+			color: var(--color-bicop-ice);
 		}
 
 		.brand {
@@ -255,6 +361,16 @@ const instagramUrl = 'https://www.instagram.com/losbicop/';
 		.brand img {
 			width: 35px;
 			height: 35px;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.navigation a,
+		.instagram-link,
+		.spotify-link,
+		.spotify-icon,
+		.site-header :global(.mobile-navigation a) {
+			transition: none;
 		}
 	}
 </style>
